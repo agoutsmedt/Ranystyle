@@ -34,7 +34,7 @@ The `install_anystyle()` function simplifies the installation of the necessary '
 See more details on Ruby's installation [here](https://www.ruby-lang.org/fr/downloads/) and on
 RubyGems [here](https://rubygems.org/pages/download?locale=fr).
 
-```{r eval = FALSE}
+```{r}
 # Install anystyle
 install_anystyle()
 ```
