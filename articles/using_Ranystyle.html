@@ -129,7 +129,9 @@ in order to manipulate the different functions of the graph.</p>
 <span><span class="va">pdf_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"Ranystyle"</span><span class="op">)</span> </span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">pdf_path</span><span class="op">)</span></span>
 <span></span>
-<span><span class="va">files</span></span></code></pre></div>
+<span><span class="va">files</span></span>
+<span><span class="co">#&gt; [1] "example_doc_1.pdf" "example_doc_1.txt" "example_doc_2.pdf" "example_doc_2.txt" "example_doc_3.pdf"</span></span>
+<span><span class="co">#&gt; [6] "example_doc_3.txt"</span></span></code></pre></div>
 <p>You can save the parsed references in various format:
 <code>bib</code>, <code>json</code>, <code>xml</code> or
 <code>ref</code> (a text document with one reference per line). By
@@ -140,23 +142,29 @@ when the bibliography has several columns.&lt;/p&gt;"><sup>2</sup></a></p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="va">files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">doc</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "example_doc_1.pdf"</span></span>
 <span><span class="va">extracted_refs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_ref.html">find_ref</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">doc</span><span class="op">)</span>,</span>
 <span>                           path <span class="op">=</span> <span class="st">""</span>,</span>
 <span>                           output_format <span class="op">=</span> <span class="st">"bib"</span>,</span>
 <span>                           no_layout <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f bib find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_1.pdf "</span></span>
 <span></span>
 <span><span class="co"># Print the extracted references</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html" class="external-link">str_trunc</a></span><span class="op">(</span><span class="va">extracted_refs</span>, <span class="fl">523</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html" class="external-link">str_trunc</a></span><span class="op">(</span><span class="va">extracted_refs</span>, <span class="fl">523</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; @article{arnold2023a,  author = {Arnold, M.},  date = {2023},  title = {ECB must do more to tackle inflation “Monster”, says christine lagarde’},  journal = {Financial Times}}@article{barro1983a,  author = {Barro, R.J. and Gordon, D.B.},  date = {1983},  title = {Rules, discretion and reputation in a model of monetary policy’},  volume = {12},  pages = {101–121},  url = {https://doi.org/10.1016/0304-3932(83)90051-X.},  doi = {10.1016/0304-3932(83)90051-X.},  journal = {Journal of Monetary Economics},  number = {1}}...</span></span></code></pre></div>
 <p>Or we can parse reference from a .txt.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="va">files</span><span class="op">[</span><span class="fl">2</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">doc</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "example_doc_1.txt"</span></span>
 <span><span class="va">extracted_refs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_ref.html">parse_ref</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">doc</span><span class="op">)</span>,</span>
 <span>                           path <span class="op">=</span> <span class="st">""</span>,</span>
 <span>                           output_format <span class="op">=</span> <span class="st">"xml"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "anystyle --no-overwrite -f xml parse C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_1.txt "</span></span>
 <span></span>
 <span><span class="co"># Print the extracted references</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html" class="external-link">str_trunc</a></span><span class="op">(</span><span class="va">extracted_refs</span>, <span class="fl">615</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html" class="external-link">str_trunc</a></span><span class="op">(</span><span class="va">extracted_refs</span>, <span class="fl">615</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; &lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;dataset&gt;  &lt;sequence&gt;    &lt;author&gt;Arnold, M.&lt;/author&gt;    &lt;date&gt;(2023).&lt;/date&gt;    &lt;title&gt;ECB must do more to tackle inflation “Monster”, says christine lagarde’.&lt;/title&gt;    &lt;journal&gt;Financial Times.&lt;/journal&gt;  &lt;/sequence&gt;  &lt;sequence&gt;    &lt;author&gt;Barro, R. J., &amp;amp; Gordon, D. B.&lt;/author&gt;    &lt;date&gt;(1983).&lt;/date&gt;    &lt;title&gt;Rules, discretion and reputation in a model of monetary policy’.&lt;/title&gt;    &lt;journal&gt;Journal of Monetary Economics,&lt;/journal&gt;    &lt;volume&gt;12(1),&lt;/volume&gt;    &lt;pages&gt;101–121.&lt;/pages&gt;    &lt;url&gt;https://doi.org/10.1016/0304-3932(83)90051-X.&lt;/url&gt;  &lt;/sequence&gt;  ...</span></span></code></pre></div>
 <p><code><a href="../reference/parse_ref.html">parse_ref()</a></code> can work directly on a vector of character,
 with one reference per line.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
@@ -172,9 +180,11 @@ with one reference per line.</p>
 <span><span class="va">extracted_refs</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/parse_ref.html">parse_ref</a></span><span class="op">(</span>input <span class="op">=</span> <span class="va">references</span>,</span>
 <span>                           path <span class="op">=</span> <span class="st">""</span>,</span>
 <span>                           output_format <span class="op">=</span> <span class="st">"json"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "anystyle --no-overwrite -f json parse ref_to_parse.txt "</span></span>
 <span></span>
 <span><span class="co"># Print the extracted references</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html" class="external-link">str_trunc</a></span><span class="op">(</span><span class="va">extracted_refs</span>, <span class="fl">640</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/cat.html" class="external-link">cat</a></span><span class="op">(</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_trunc.html" class="external-link">str_trunc</a></span><span class="op">(</span><span class="va">extracted_refs</span>, <span class="fl">640</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [  {    "author": [      {        "family": "Smith",        "given": "J."      }    ],    "date": [      "2020"    ],    "title": [      "Understanding Artificial Intelligence"    ],    "volume": [      "35"    ],    "pages": [      "123–145"    ],    "type": "article-journal",    "container-title": [      "AI Journal"    ],    "issue": [      "5"    ]  },  {    "author": [      {        "family": "Johnson",        "given": "L."      },      {        "family": "Brown",        "given": "C."      }    ],    "date": [      "2018"    ],    "title": [      "Advances in Machine Learning"    ],    "location": [      "New York"    ],    ...</span></span></code></pre></div>
 </div>
 <div class="section level2">
 <h2 id="from-reference-to-data-frame">From Reference to Data Frame<a class="anchor" aria-label="anchor" href="#from-reference-to-data-frame"></a>
@@ -187,10 +197,29 @@ the references extracted.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="va">files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">doc</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "example_doc_1.pdf"</span></span>
 <span><span class="va">data_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_ref_to_df.html">find_ref_to_df</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">doc</span><span class="op">)</span>,</span>
 <span>                           no_layout <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_1.pdf "</span></span>
+<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_1.pdf ./"</span></span>
 <span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">data_ref</span><span class="op">)</span></span></code></pre></div>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">data_ref</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 81 × 23</span></span>
+<span><span class="co">#&gt;    id_doc doc        id_ref author   title  year `container-title` volume pages location publisher type  date  other_date</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt;  1      1 example_d… 1_1    &lt;tibble&gt; ECB …  2023 Financial Times   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2023  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  2      1 example_d… 1_2    &lt;tibble&gt; Rule…  1983 Journal of Monet… 12     101–… &lt;NA&gt;     &lt;NA&gt;      arti… 1983  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  3      1 example_d… 1_3    &lt;tibble&gt; Idea…  2009 Journal of Europ… 16     701–… &lt;NA&gt;     &lt;NA&gt;      arti… 2009  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  4      1 example_d… 1_4    &lt;tibble&gt; A st…  1999 Scottish Journal… 46     17–39 &lt;NA&gt;     &lt;NA&gt;      arti… 1999  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  5      1 example_d… 1_5    &lt;tibble&gt; Tech…  2018 International Po… 12     328–… &lt;NA&gt;     &lt;NA&gt;      arti… 2018  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  6      1 example_d… 1_6    &lt;tibble&gt; Late…  2003 Journal of Machi… 3      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2003  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  7      1 example_d… 1_7    &lt;tibble&gt; Plan…  2022 Zeitschrift Für … 32     707–… &lt;NA&gt;     &lt;NA&gt;      arti… 2022  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  8      1 example_d… 1_8    &lt;tibble&gt; Repu…  2010 &lt;NA&gt;              &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     Princeto… book  2010  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  9      1 example_d… 1_9    &lt;tibble&gt; The …  2016 At the Macroecon… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2016  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt; 10      1 example_d… 1_10   &lt;tibble&gt; Effe…  2017 At the EUROFI Co… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2017  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt; # ℹ 71 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 9 more variables: other_title &lt;chr&gt;, url &lt;chr&gt;, issue &lt;chr&gt;, doi &lt;chr&gt;, edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   editor &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
 <p><code><a href="../reference/find_ref_to_df.html">find_ref_to_df()</a></code> and <code><a href="../reference/find_ref_to_df.html">parse_ref_to_df()</a></code> can
 also take multiple PDF or .txt documents and create a data frame from
 them.</p>
@@ -200,15 +229,50 @@ them.</p>
 <span><span class="va">data_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_ref_to_df.html">find_ref_to_df</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">pdfs</span><span class="op">)</span>,</span>
 <span>                           clean_ref <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>                           no_layout <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_1.pdf "</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_2.pdf "</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_3.pdf "</span></span>
+<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_1.pdf ./"</span></span>
+<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_2.pdf ./"</span></span>
+<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/Documents/MEGAsync/Research/R/Packages/Ranystyle/inst/extdata/example_doc_3.pdf ./"</span></span>
 <span></span>
-<span><span class="va">data_ref</span></span></code></pre></div>
+<span><span class="va">data_ref</span></span>
+<span><span class="co">#&gt; # A tibble: 266 × 21</span></span>
+<span><span class="co">#&gt;    id_doc doc      id_ref author date  title type  `container-title` volume pages  url    issue  doi   publisher location</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;list&gt; &lt;lis&gt; &lt;lis&gt; &lt;chr&gt; &lt;list&gt;            &lt;list&gt; &lt;list&gt; &lt;list&gt; &lt;list&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   </span></span>
+<span><span class="co">#&gt;  1      1 example… 1_1    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  2      1 example… 1_2    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  10.1… &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  3      1 example… 1_3    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  4      1 example… 1_4    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  5      1 example… 1_5    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  6      1 example… 1_6    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  7      1 example… 1_7    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  10.1… &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  8      1 example… 1_8    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; book  &lt;NULL&gt;            &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  Princeto… &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;  9      1 example… 1_9    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; pape… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;chr&gt;  &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt; 10      1 example… 1_10   &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; pape… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;chr&gt;  &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt; # ℹ 256 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 6 more variables: edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;, editor &lt;list&gt;, `collection-title` &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
 <p>As you may have seen, anystyle runs twice per document: the second
 time serve to extract the references in a .ref format, and is used to
 keep the whole reference in a column of the table. This could be useful
 for cleaning the data later.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_ref</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
-<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id_ref</span>, <span class="va">full_ref</span><span class="op">)</span></span></code></pre></div>
+<span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id_ref</span>, <span class="va">full_ref</span><span class="op">)</span></span>
+<span><span class="co">#&gt; # A tibble: 266 × 2</span></span>
+<span><span class="co">#&gt;    id_ref full_ref                                                                                                       </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                                                                                                          </span></span>
+<span><span class="co">#&gt;  1 1_1    Arnold, M. (2023). ECB must do more to tackle inflation “Monster”, says christine lagarde’. Financial Times.   </span></span>
+<span><span class="co">#&gt;  2 1_2    Barro, R. J., &amp; Gordon, D. B. (1983). Rules, discretion and reputation in a model of monetary policy’. Journal…</span></span>
+<span><span class="co">#&gt;  3 1_3    Béland, D. (2009). Ideas, institutions, and policy change’. Journal of European Public Policy, 16(5), 701–718. </span></span>
+<span><span class="co">#&gt;  4 1_4    Berger, H., &amp; Haan, J. (1999). A state within the state? An event study on the bundesbank (1948–1973)’. Scotti…</span></span>
+<span><span class="co">#&gt;  5 1_5    Best, J. (2018). Technocratic exceptionalism: Monetary policy and the fear of democracy’. International Politi…</span></span>
+<span><span class="co">#&gt;  6 1_6    Blei, D. M., Ng, A. Y., &amp; Jordan, M. I. (2003). Latent Dirichlet Allocation’. Journal of Machine Learning Rese…</span></span>
+<span><span class="co">#&gt;  7 1_7    Braun, B., Carlo, D., &amp; Diessner, S. (2022). Planning Laissez-Faire: Supranational Central Banking and Structu…</span></span>
+<span><span class="co">#&gt;  8 1_8    Carpenter, D. P. (2010). Reputation and power: Organizational image and pharmaceutical regulation at the FDA. …</span></span>
+<span><span class="co">#&gt;  9 1_9    Constâncio, V. (2016). The challenge of low real interest rates for monetary policy’. At the Macroeconomics Sy…</span></span>
+<span><span class="co">#&gt; 10 1_10   Constâncio, V. (2017). Effectiveness of monetary union and the capital markets union’. At the EUROFI Conferenc…</span></span>
+<span><span class="co">#&gt; # ℹ 256 more rows</span></span></code></pre></div>
 <p>The data extracted are still a bit messy. Most columns are in list
 format, with sometimes two or more element per reference (like two
 dates, or two titles). The <code><a href="../reference/clean_ref.html">clean_ref()</a></code> function implements
@@ -236,7 +300,23 @@ analysis and readability.</li>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">data_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_ref.html">clean_ref</a></span><span class="op">(</span><span class="va">data_ref</span><span class="op">)</span> </span>
 <span></span>
-<span><span class="va">data_ref</span></span></code></pre></div>
+<span><span class="va">data_ref</span></span>
+<span><span class="co">#&gt; # A tibble: 266 × 24</span></span>
+<span><span class="co">#&gt;    id_doc doc        id_ref author   title  year `container-title` volume pages location publisher type  date  other_date</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     </span></span>
+<span><span class="co">#&gt;  1      1 example_d… 1_1    &lt;tibble&gt; ECB …  2023 Financial Times   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2023  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  2      1 example_d… 1_2    &lt;tibble&gt; Rule…  1983 Journal of Monet… 12     101–… &lt;NA&gt;     &lt;NA&gt;      arti… 1983  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  3      1 example_d… 1_3    &lt;tibble&gt; Idea…  2009 Journal of Europ… 16     701–… &lt;NA&gt;     &lt;NA&gt;      arti… 2009  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  4      1 example_d… 1_4    &lt;tibble&gt; A st…  1999 Scottish Journal… 46     17–39 &lt;NA&gt;     &lt;NA&gt;      arti… 1999  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  5      1 example_d… 1_5    &lt;tibble&gt; Tech…  2018 International Po… 12     328–… &lt;NA&gt;     &lt;NA&gt;      arti… 2018  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  6      1 example_d… 1_6    &lt;tibble&gt; Late…  2003 Journal of Machi… 3      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2003  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  7      1 example_d… 1_7    &lt;tibble&gt; Plan…  2022 Zeitschrift Für … 32     707–… &lt;NA&gt;     &lt;NA&gt;      arti… 2022  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  8      1 example_d… 1_8    &lt;tibble&gt; Repu…  2010 &lt;NA&gt;              &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     Princeto… book  2010  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;  9      1 example_d… 1_9    &lt;tibble&gt; The …  2016 At the Macroecon… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2016  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt; 10      1 example_d… 1_10   &lt;tibble&gt; Effe…  2017 At the EUROFI Co… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2017  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt; # ℹ 256 more rows</span></span>
+<span><span class="co">#&gt; # ℹ 10 more variables: other_title &lt;chr&gt;, url &lt;chr&gt;, issue &lt;chr&gt;, doi &lt;chr&gt;, edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;,</span></span>
+<span><span class="co">#&gt; #   editor &lt;chr&gt;, `collection-title` &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
 <p>These cleaning steps are directly implemented in
 <code><a href="../reference/find_ref_to_df.html">find_ref_to_df()</a></code> and <code><a href="../reference/find_ref_to_df.html">parse_ref_to_df()</a></code>: you
 just need to set <code>clean_ref</code> to TRUE.</p>
