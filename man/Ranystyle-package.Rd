@@ -12,6 +12,7 @@ Provides tools for automated extraction, parsing, and cleaning of bibliographic 
 Useful links:
 \itemize{
   \item \url{https://github.com/agoutsmedt/Ranystyle}
+  \item \url{https://agoutsmedt.github.io/Ranystyle/}
   \item Report bugs at \url{https://github.com/agoutsmedt/Ranystyle/issues}
 }
 
