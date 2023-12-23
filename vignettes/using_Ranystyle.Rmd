@@ -1,0 +1,152 @@
+---
+title: "Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References"
+author: "Aurélien Goutsmedt"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(Ranystyle)
+library(magrittr)
+```
+
+# Introduction
+
+Ranystyle is an R package designed to automate the extraction, parsing, and cleaning of bibliographic references from PDF and text documents. It relies on [anystyle](https://anystyle.io) application.^[*anystyle* is under copyright: Copyright 2011-2018 Sylvester Keil. All rights reserved. See the [Licence](https://github.com/inukshuk/anystyle-cli/blob/master/LICENSE) for details.] This vignette provides a comprehensive guide to using Ranystyle's functionalities, including extracting references from PDFs, parsing references from text files, and cleaning and organizing reference data.
+
+# Initial Setup: installing anystyle
+
+Before using the functionalities to extract or parse references, you need to ensure that the [anystyle](https://anystyle.io) Ruby gem is installed on your system.
+
+The `install_anystyle()` function simplifies the installation of the necessary 'anystyle' components. Ensure that the Ruby environment is properly configured and that gem can be called from the command line.
+See more details on Ruby's installation [here](https://www.ruby-lang.org/fr/downloads/) and on
+RubyGems [here](https://rubygems.org/pages/download?locale=fr).
+
+```{r eval = FALSE}
+# Install anystyle
+install_anystyle()
+```
+
+# Extracting References from PDFs and text files
+
+The `find_ref()` function is used to extract references from PDF documents. It utilizes the 'anystyle' Ruby gem `find` function to analyze the document and identify reference sections from PDF. The `parse_ref()` function, coming from anystyle `parse` function, is designed to parse structured references from text files or from a vector of character. It reads the text, applies parsing rules, and converts the references into a structured format.
+
+The package incorporates various academic PDFs with bibliographies, as well as the bibliographies of these PDFs extracted in a .txt format, in order to manipulate the different functions of the graph.
+
+```{r}
+# Path to the documents of the package
+pdf_path <- system.file("extdata", package = "Ranystyle") 
+files <- list.files(pdf_path)
+
+files
+```
+
+You can save the parsed references in various format: `bib`, `json`, `xml` or `ref` (a text document with one reference per line). By setting `path = ""` in `find_ref()` or `parse_ref()`, you can directly extract the results in R, rather than saving the results. Let's see an example with a PDF.^[The `no_layout` parameter can be set to TRUE when the bibliography has several columns.]
+
+```{r}
+doc <- files[1]
+print(doc)
+extracted_refs <- find_ref(input = paste0(pdf_path, "/", doc),
+                           path = "",
+                           output_format = "bib",
+                           no_layout = FALSE)
+
+# Print the extracted references
+cat(stringr::str_trunc(extracted_refs, 523))
+```
+
+Or we can parse reference from a .txt.
+
+```{r}
+doc <- files[2]
+print(doc)
+extracted_refs <- parse_ref(input = paste0(pdf_path, "/", doc),
+                           path = "",
+                           output_format = "xml")
+
+# Print the extracted references
+cat(stringr::str_trunc(extracted_refs, 615))
+```
+
+`parse_ref()` can work directly on a vector of character, with one reference per line.
+
+```{r}
+# a set of false references
+references <- c(
+  "Smith, J. (2020). Understanding Artificial Intelligence. AI Journal, 35(5), 123-145.",
+  "Johnson, L., and Brown, C. (2018). Advances in Machine Learning. New York: Academic Press.",
+  "Clark, E., & Wright, R. (2019). Robotics and Automation. London: Springer, 200-250.",
+  "Davis, M. 2021. Quantum Computing: A New Era. Quantum Computing, 5(3):300-320.",
+  "Adams, James, and Murphy, Finn. (2022). Exploring Virtual Reality. VR World, 10(7), 777-800."
+)
+
+extracted_refs <- parse_ref(input = references,
+                           path = "",
+                           output_format = "json")
+
+# Print the extracted references
+cat(stringr::str_trunc(extracted_refs, 640))
+```
+
+# From Reference to Data Frame
+
+Depending on whether your start from PDFs or from .txt. or vectors, you can use two functions: `find_ref_to_df()` and `parse_ref_to_df()`. These functions create a data frame (a `tibble` more precisely) gathering the various information of the references extracted.
+
+```{r}
+doc <- files[1]
+print(doc)
+data_ref <- find_ref_to_df(input = paste0(pdf_path, "/", doc),
+                           no_layout = FALSE)
+
+print(data_ref)
+```
+
+`find_ref_to_df()` and `parse_ref_to_df()` can also take multiple PDF or .txt documents and create a data frame from them.
+
+```{r}
+pdfs <- files %>% 
+  .[stringr::str_detect(., "\\.pdf$")]
+data_ref <- find_ref_to_df(input = paste0(pdf_path, "/", pdfs),
+                           clean_ref = FALSE,
+                           no_layout = FALSE)
+
+data_ref
+```
+
+As you may have seen, anystyle runs twice per document: the second time serve to extract the references in a .ref format, and is used to keep the whole reference in a column of the table. This could be useful for cleaning the data later. 
+
+```{r}
+data_ref %>% 
+  dplyr::select(id_ref, full_ref)
+```
+
+The data extracted are still a bit messy. Most columns are in list format, with sometimes two or more element per reference (like two dates, or two titles). The `clean_ref()` function implements different cleaning processes: 
+
+- It collapses non-essential columns (i.e. other than `date` and `title`), combining multiple entries into a single text string.
+- It reorganizes `author` information, creating a full name from given, particle, and family components. Also add an `author_order` column. The column will remain in a list format.
+- It separates and cleans dates and titles, organizing them into primary and additional information. The first date and first title are save in `date` and `title`. The other dates and titles are saved in `other_date` and `other_title`.
+- It extracts the year from the date and places it in a separate column.
+- It removes extraneous punctuation and trims whitespace from character columns.
+- It relocates key columns to a more standardized order for easier analysis and readability.
+
+```{r}
+data_ref <- clean_ref(data_ref) 
+
+data_ref
+```
+
+These cleaning steps are directly implemented in `find_ref_to_df()` and `parse_ref_to_df()`: you just need to set `clean_ref` to TRUE.
+
+

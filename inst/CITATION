@@ -1,0 +1,16 @@
+citHeader("To cite biblionetwork in publications use:")
+
+citEntry(
+  entry = "Manual",
+  title = "Ranystyle: Automated Bibliographic Reference Parsing and Cleaning",
+  author = personList(as.person("Aurélien Goutsmedt")),
+  year = 2024,
+  note = "R package version 0.0.999",
+  url = "https://github.com/agoutsmedt/Ranystyle",
+  textVersion = paste(
+    "Goutsmedt, Aurélien, (2023). Ranystyle: Automated Bibliographic Reference Parsing and Cleaning. R package version 0.0.999.",
+    "https://github.com/agoutsmedt/Ranystyle"
+  )
+)
+
+citFooter("As Ranystyle is continually evolving, you may want to cite its version number. Find it with 'help(package=Ranystyle)'.")

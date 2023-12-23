@@ -1,13 +1,39 @@
-Package: Ranystyle
 Type: Package
-Title: What the Package Does (Title Case)
-Version: 0.1.0
-Author: Who wrote it
+Package: Ranystyle
+Title: Automated Bibliographic Reference Parsing and Cleaning
+Version: 0.0.999
+Date: 2023-12-23
+Authors@R: 
+    person("Aurélien", "Goutsmedt", , "aurelien.goutsmedt@uclouvain.be", role = c("cre", "aut"),
+           comment = c(ORCID = "0000-0002-3788-7237"))
+Author: Aurélien Goutsmedt.
 Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
-LazyData: true
+Description: Provides tools for automated extraction, parsing, and
+    cleaning of bibliographic references from PDF and text documents.
+    Utilizing the 'anystyle' Ruby gem, it segments references and converts
+    them into structured formats. The package offers functions to
+    reorganize and clean the data, making it easier to analyze and use
+    bibliographic information. It handles various input and output formats
+    and provides utilities for detailed reference management.
+License: MIT + file LICENSE
 URL: https://github.com/agoutsmedt/Ranystyle
 BugReports: https://github.com/agoutsmedt/Ranystyle/issues
+Imports: 
+    cli,
+    dplyr,
+    jsonlite,
+    lifecycle,
+    magrittr,
+    purrr,
+    rlang,
+    stringr,
+    tibble,
+    tidyr
+Encoding: UTF-8
+LazyData: true
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.3
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr

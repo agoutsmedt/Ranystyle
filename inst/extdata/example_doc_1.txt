@@ -1,0 +1,81 @@
+Arnold, M. (2023). ECB must do more to tackle inflation “Monster”, says christine lagarde’. Financial Times.
+Barro, R. J., & Gordon, D. B. (1983). Rules, discretion and reputation in a model of monetary policy’. Journal of Monetary Economics, 12(1), 101–121. https://doi.org/10.1016/0304-3932(83)90051-X.
+Béland, D. (2009). Ideas, institutions, and policy change’. Journal of European Public Policy, 16(5), 701–718.
+Berger, H., & Haan, J. (1999). A state within the state? An event study on the bundesbank (1948–1973)’. Scottish Journal of Political Economy, 46(1), 17–39.
+Best, J. (2018). Technocratic exceptionalism: Monetary policy and the fear of democracy’. International Political Sociology, 12(4), 328–345.
+Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation’. Journal of Machine Learning Research, 3.
+Braun, B., Carlo, D., & Diessner, S. (2022). Planning Laissez-Faire: Supranational Central Banking and Structural Reforms’. Zeitschrift Für Politikwissenschaft, 32(3), 707–716. https://doi.org/10.1007/s41358-022-00322-6.
+Carpenter, D. P. (2010). Reputation and power: Organizational image and pharmaceutical regulation at the FDA. Princeton University Press.
+Constâncio, V. (2016). The challenge of low real interest rates for monetary policy’. At the Macroeconomics Symposium, Utrecht School of Economics. https://www.bis.org//review/r160616h.pdf.
+Constâncio, V. (2017). Effectiveness of monetary union and the capital markets union’. At the EUROFI Conference. https://www.bis.org//review/r170410b.pdf.
+Constâncio, V. (2018). Past and future of the european central bank monetary policy’. At the Conference on “Central Banks in Historical Perspective: What Changed after the Financial Crisis?”, Organised by the Central Bank of Malta. https://www.bis.org//review/r180511b.pdf.
+Cross, J. P., & Greene, D. (2020). Talk is not cheap: Policy agendas, information processing, and the unusually proportional nature of european central bank communications policy responses’. Governance-an International Journal of Policy and Administration, 33(2), 425–444. https://doi.org/10.1111/gove.12441.
+Denny, M. J., & Spirling, A. (2018). Text preprocessing for unsupervised learning: Why it matters, when it misleads, and what to do about it. Political Analysis, 26(2), 168–189. https://doi.org/10.1017/pan.2017.44.
+Deyris, J. (2022). Too green to be true? Forging a climate consensus at the European Central Bank. New Political Economy, 1–18.
+Diessner, S., & Lisi, G. (2020). Masters of the “Masters of the universe”? Monetary, fiscal and financial dominance in the eurozone’. Socio-Economic Review, 18(2), 315–335.
+Dietsch, P., Claveau, F., & Fontan, C. (2018). Do central banks serve the people? Future of capitalism. Polity Press.
+Doorslaer, Hielke, & Vermeiren, M. (2021). Pushing on a string: Monetary policy, growth models and the persistence of low inflation in advanced capitalism’. New Political Economy, 26(5), 797–816.
+Draghi, M. (2015). Hearing at the committee on economic and monetary affairs of the european parliament’. Before the Hearing at the Committee on Economic and Monetary Affairs of the European Parliament. https://www.bis.org//review/r150324a.pdf.
+Draghi, M. (2016). Delivering a symmetric mandate with asymmetric tools—Monetary policy in a context of low interest rates’. In At the Ceremony to Mark the 200th Anniversary of the Central Bank of the Republic of Austria. https://www.bis.org//review/r160608c.pdf.
+Draghi, M. (2017a). Accompanying the economic recovery’. At the ECB Forum on Central Banking. https://www.bis.org//review/r170707b.pdf.
+Draghi, M. (2017b). Monetary policy and the economic recovery in the euro area. At the ECB and Its Watchers XVIII Conference, Organised by the Center for Financial Studies and the Institute for Monetary and Financial Stability at Goethe University Frankfurt. https://www.bis.org//review/r170410f.pdf.
+Draghi, M. (2017c). Monetary policy and the outlook for the economy’. At the Frankfurt European Banking Congress “Europe into a New Era – How to Seize the Opportunities.” https://www.bis.org//review/r171121f.pdf.
+Drazen, A. (2002). Political economy in macroeconomics. Édition: New ed. Princeton University Press.
+Duisenberg, W. F. (2001). What exactly is the responsibility of central banks of large economic areas in the current slowdown of the world economy? At the International Monetary Conference. https://www.bis.org//review/r010607a.pdf.
+Epstein, G. A. (2005). Financialization and the world economy. Edward Elgar Publishing.
+Ferrara, F. M. (2019). The battle of ideas on the euro crisis: Evidence from ECB inter-meeting speeches’. Journal of European Public Policy, 27(10), 1463–1486. https://doi.org/10.1080/13501763.2019.1670231.
+Ferrara, F. M., Masciandaro, D., Moschella, M., & Romelli, D. (2022). Political voice on monetary policy: Evidence from the parliamentary hearings of the european central bank’. European Journal of Political Economy, 74, 102–143. https://doi.org/10.1016/j.ejpoleco.2021.102143.
+Fontan, C. (2018). Frankfurt’s double standard: The politics of the european central bank during the eurozone crisis’. Cambridge Review of International Affairs, 31(2), 162–182. https://doi.org/10.1080/09557571.2018.1495692.
+Gabor, D. (2014). Learning from japan: The european central bank and the european sovereign debt crisis’. Review of Political Economy, 26(2), 190–209. https://doi.org/10.1080/09538259.2014.881010.
+Gabor, D. (2022). Zugzwang central banking (ECB edition)’. Financial Times.
+Gabor, D., & Ban, C. (2016). Banking on bonds: The new links between states and markets’. JCMS: Journal of Common Market Studies, 54(3), 617–635.
+Goutsmedt, A., & Truc, A. (2023). An independent european macroeconomics? A history of european macroeconomics through the lens of the european economic review’.
+European Economic Review, 158. https://doi.org/10.1016/j.euroecorev.2023.104559
+Grimmer, J., Roberts, M. E., & Stewart, B. M. (2022). Text as data: A new framework for machine learning and the social sciences. Princeton University Press.
+Grunewald, S. N., & van ’t Klooster, J. (2023). New strategy. New Accountability: The European Central Bank and the European Parliament after the Strategy Review’. SSRN Scholarly Paper. https://doi.org/10.2139/ssrn.4420805.
+Guindos & Luis. (2019). Improving macroeconomic stabilisation in the euro area’. At the Global Interdependence Center Central Banking Series Conference. https://www.bis.org//review/r191007f.pdf.
+Hall, P. A., & Franzese, R. J. (1998). Mixed signals: Central bank independence, coordinated wage bargaining, and european monetary union’. International Organization, 52(03), 505–535. https://doi.org/10.1162/002081898550644.
+Heipertz, M., & Verdun, A. (2010). Ruling europe: The politics of the stability and growth pact. Cambridge University Press.
+Högenauer, A.-L., & Howarth, D. (2016). Unconventional monetary policies and the european central bank’s problematic democratic legitimacy’. Zeitschrift Für Öffentliches Recht, 71(2), 1–24.
+Howarth, D., & Loedel, P. H. (2005). The european central bank: The new european leviathan? Palgrave Macmillan.
+Issing, O. (2004). The euro and the lisbon agenda’. At the 32nd Economics Conference of the Austrian National Bank. https://www.bis.org//review/r040604h.pdf.
+Issing, O., Gaspar, V., Angeloni, I., & Tristani, O. (2001). Monetary policy in the euro area: Strategy and decision-making at the european central bank. Cambridge University Press.
+Johnson, J., Arel‐Bundock, V., & Portniaguine, V. (2019). Adding rooms onto a house we love: Central banking after the global financial crisis’. Public Administration, 97(3), 546–560. https://doi.org/10.1111/padm.12567.
+Jones, E. (2009). Output legitimacy and the global financial crisis: Perceptions matter’. JCMS: Journal of Common Market Studies, 47(5), 1085–1105.
+Jones, E. (2015). Getting the story right: How you should choose between different interpretations of the european crisis (and why you should care)’. Journal of European Integration, 37(7), 817–832. https://doi.org/10.1080/07036337.2015.1079376.
+Kydland, F. E., & Prescott, E. C. (1977). Rules rather than discretion: The inconsistency of optimal plans’. Journal of Political Economy, 85(3), 473–491.
+Lagarde, C. (2023). At the Deutsche Börse Annual Reception in Eschborn. https://www.bis.org//review/r230124j.pdf.
+Lagarde, C., & Guindos, L. (2022). Monetary policy statement’. Press Conference. https://www.bis.org//review/r220609m.pdf.
+Lane, P. R. (2022). Monetary policy during the pandemic: The role of the PEPP’. At the International Macroeconomics Chair Banque de France. Paris School of Economics. https://www.bis.org//review/r220420c.pdf.
+Lombardi, D., & Moschella, M. (2016). The government bond buying programmes of the european central bank: An analysis of their policy settings’. Journal of European Public Policy, 23(6), 851–870. https://doi.org/10.1080/13501763.2015.1069374.
+Mair, P. (2013). Ruling the void: The hollowing of western democracy. Verso books.
+Marsh, D. (1992). The bundesbank: The bank that rules europe. Heineman.
+McNamara, K. (2002). Rational fictions: Central bank independence and the social logic of delegation’. West European Politics, 25(1), 47–76.
+McPhilemy, S., & Moschella, M. (2019). Central banks under stress: Reputation, accountability and regulatory coherence’. Public Administration, 97(3), 489–498. https://doi.org/10.1111/padm.12606.
+Moschella, M., & Diodati, N. M. (2020). Does politics drive conflict in central banks’ committees? Lifting the veil on the european central bank consensus’. European Union Politics, 21(2), 183–203. https://doi.org/10.1177/1465116519890412.
+Moschella, M., Pinto, L., & Diodati, N. M. (2020). Let’s speak more? How the ECB responds to public contestation’. Journal of European Public Policy, 27(3), 400–418.
+Nelson, L. K. (2020). Computational grounded theory: A methodological framework’. Sociological Methods & Research, 49(1), 3–42. https://doi.org/10.1177/0049124117729703.
+Panetta, F. (2022). Mind the step: Calibrating monetary policy in a volatile environment’. At the ECB Money Market Conference. https://www.bis.org//review/r221103h.pdf.
+Praet, P. (2015). Lifting Potential Growth in the Euro Area. At the Welt-Währungskonferenz. https://www.bis.org/review/r150427f.pdf.
+Praet, P. (2017). Ensuring price stability. At the Belgian Financial Forum Colloquium on ‘The Low Interest Rate Environment.’ https://www.bis.org//review/r170505d.pdf.
+Quaglia, L., & Verdun, A. (2023). Explaining the response of the ECB to the COVID-19 related economic crisis: Inter-crisis and intra-crisis learning’. Journal of European Public Policy, 1–20.
+Quorning, S. (2023). The ‘Climate shift’in central banks: How field arbitrageurs paved the way for climate stress testing.’ Review of International Political Economy, 1–23.
+Rosenhek, Z. (2013). Diagnosing and explaining the global financial crisis: Central banks, epistemic authority, and sense making’. International Journal of Politics, Culture, and Society, 26(3), 255–272.
+Schmidt, V. A. (2016). The roots of neo-liberal resilience: Explaining continuity and change in background ideas in europe’s political economy’. The British Journal of Politics and International Relations, 18(2), 318–334.
+Schmidt, V. A. (2018). Reinterpreting the rules ‘by stealth’ in times of crisis: A discursive institutionalist analysis of the european central bank and the european commission’. In Europe’s union in crisis (pp. 118–138). Routledge.
+Schnabel, I. (2020). The shadow of fiscal dominance: Misconceptions, perceptions and perspectives’. In At the centre for european reform and the eurofi financial forum on “Is the current ECB monetary policy doing more harm than good and what are the alternatives?” https://www.bis.org/review/r200914f.pdf.
+Schnabel, I. (2022a). Managing policy trade-offs’. At a workshop organised by the european house – ambrosetti on “The agenda for europe: Macroeconomic and structural policy challenges.” Cernobbio. https://www.bis.org//review/r220413f.pdf.
+Schnabel, I. (2022b). A new age of energy inflation—Climateflation, fossilflation and greenflation’. At a panel on ‘Monetary policy and climate change. At ‘The ECB and Its Watchers XXII’ Conference. https://www.bis.org/review/r220317b.pdf.
+Schnabel, I. (2022c). Finding the right mix: Monetary-fiscal interaction at times of high inflation’. At the Bank of England Watchers’ Conference. https://www.bis.org//review/r221124g.pdf.
+Schnabel, I. (2023). Monetary policy tightening and the green transition’. At the International Symposium on Central Bank Independence. https://www.bis.org//review/r230110k.pdf.
+Siderius, K. (2023). An unexpected climate activist: Central banks and the politics of the climate-neutral economy. Journal of European Public Policy, 30(8), 1588–1608.
+Stark, J. (2009). The economic crisis and the response of fiscal and monetary policy’. At the Austrian Industrial Organisation, Linz. https://www.bis.org//review/r090615e.pdf.
+Stark, J. (2011). The global financial crisis and the role of monetary policy’. At the 13th Annual Emerging Markets Conference 2011. https://www.bis.org//review/r110926b.pdf.
+Sturm, R. (1995). How independent is the bundesbank? German Politics, 4(1), 27–41. https://doi.org/10.1080/09644009508404385.
+Tesche, T. (2019). Instrumentalizing EMU’s democratic deficit: The ECB’s unconventional accountability measures during the eurozone crisis’. Journal of European Integration, 41(4), 447–463.
+Tesche, T. (2023). Trustee strategies, politicization and de-Delegation: The case of the european central bank’. Governance-an International Journal of Policy and Administration, 36(1), 125–140.
+Teulings, C., & Baldwin, R. (Eds.). (2014). Secular stagnation: Facts, causes and cures. CEPR Press.
+Trichet, J.-C. (2004). European economy—Current state and prospects. Keynote Speech at the Annual Dinner 2004 of Financial Services Ireland (FSI). https://www.bis.org//review/r040929d.pdf.
+Trichet, J.-C. (2008). European central bank: Press conference – introductory statement’. At the ECB. https://www.bis.org//review/r080610b.pdf.
+Trichet, J.-C. (2006, June 21). Testimony before the Committee on Economic and Monetary Affairs of the European Parliament. https://www.bis.org//review/r060712b.pdf Trichet, J.-C., & Papademos, L. (2007). European central bank: Press conference –introductory statement’. At the ECB. https://www.bis.org//review/r080610b.pdf. van’t Klooster, J. (2018). Democracy and the european central bank’s emergency powers’. Midwest Studies in Philosophy, 42, 270–293. van’t Klooster, J. (2022a). Technocratic keynesianism: A paradigm shift without legislative change’. New Political Economy, 27(5), 771–787. van’t Klooster, J. (2022b). The politics of the ECB’s market-based approach to government debt’. Socio-Economic Review. van’t Klooster, J, & Fontan, C. (2020). The myth of market neutrality: A comparative study of the european central bank’s and the swiss national bank’s corporate security purchases’. New Political Economy, 25(6), 865–879.
+Verdun, A. (1999). The role of the delors committee in the creation of EMU: An epistemic community? Journal of European Public Policy, 6(2), 308–328. https://doi.org/10.1080/135017699343739.

@@ -1,0 +1,55 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Ranystyle
+
+<!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+<!-- badges: end -->
+
+Ranystyle is an R package designed to automate the extraction, parsing, and cleaning of bibliographic references from PDF and text documents. Utilizing the power of the 'anystyle' Ruby gem, it segments references and converts them into structured formats suitable for analysis and use.
+
+You can cite this package as:
+```{r}
+citation("Ranystyle")
+```
+
+
+## Installation
+
+You can install the development version of Ranystyle from [GitHub](https://github.com/) with:
+
+```r
+# install.packages("devtools")
+devtools::install_github("agoutsmedt/Ranystyle")
+```
+
+## Example
+
+Here's a basic example of how you might use Ranystyle to parse and clean references from a PDF document:
+
+```{r example}
+library(Ranystyle)
+# Path to your PDF document
+pdf_path <- system.file("extdata", package = "Ranystyle") 
+files <- list.files(pdf_path)
+
+# Extract references from the PDF
+extracted_refs <- find_ref_to_df(input = paste0(pdf_path, "/", files[1]))
+
+# Print the extracted references
+print(extracted_refs)
+```
+
