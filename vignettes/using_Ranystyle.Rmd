@@ -13,7 +13,6 @@ vignette: >
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  eval = FALSE,
   comment = "#>"
 )
 ```
@@ -35,7 +34,7 @@ The `install_anystyle()` function simplifies the installation of the necessary '
 See more details on Ruby's installation [here](https://www.ruby-lang.org/fr/downloads/) and on
 RubyGems [here](https://rubygems.org/pages/download?locale=fr).
 
-```{r}
+```{r eval = FALSE}
 # Install anystyle
 install_anystyle()
 ```
@@ -56,7 +55,7 @@ files
 
 You can save the parsed references in various format: `bib`, `json`, `xml` or `ref` (a text document with one reference per line). By setting `path = ""` in `find_ref()` or `parse_ref()`, you can directly extract the results in R, rather than saving the results. Let's see an example with a PDF.^[The `no_layout` parameter can be set to TRUE when the bibliography has several columns.]
 
-```{r}
+```{r eval = FALSE}
 doc <- files[1]
 print(doc)
 extracted_refs <- find_ref(input = paste0(pdf_path, "/", doc),
@@ -70,7 +69,7 @@ cat(stringr::str_trunc(extracted_refs, 523))
 
 Or we can parse reference from a .txt.
 
-```{r}
+```{r eval = FALSE}
 doc <- files[2]
 print(doc)
 extracted_refs <- parse_ref(input = paste0(pdf_path, "/", doc),
