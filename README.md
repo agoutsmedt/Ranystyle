@@ -61,8 +61,8 @@ files <- list.files(pdf_path)
 
 # Extract references from the PDF
 extracted_refs <- find_ref_to_df(input = paste0(pdf_path, "/", files[1]))
-#> [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpEtApZg/temp_libpath489842e7298e/Ranystyle/extdata/example_doc_1.pdf "
-#> [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpEtApZg/temp_libpath489842e7298e/Ranystyle/extdata/example_doc_1.pdf ./"
+#> [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath5104423022cc/Ranystyle/extdata/example_doc_1.pdf "
+#> [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath5104423022cc/Ranystyle/extdata/example_doc_1.pdf ./"
 
 # Print the extracted references
 print(extracted_refs)
@@ -84,3 +84,16 @@ print(extracted_refs)
 #> #   other_date <chr>, other_title <chr>, url <chr>, issue <chr>, doi <chr>,
 #> #   edition <chr>, genre <chr>, note <chr>, editor <chr>, full_ref <chr>
 ```
+
+## Credits
+
+*anystyle* has been developed by [Alex
+Fenton](https://github.com/a-fent), [Sylvester
+Keil](https://github.com/inukshuk), [Johannes
+Krtek](https://github.com/flachware) and [Ilja
+Srna](https://github.com/namyra). *anystyle* is under copyright:
+Copyright 2011-2018 Sylvester Keil. All rights reserved. See the
+[Licence](https://github.com/inukshuk/anystyle-cli/blob/master/LICENSE)
+for details.
+
+The logo of *Ranystyle* has been generated with DALL·E.

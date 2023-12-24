@@ -53,3 +53,8 @@ extracted_refs <- find_ref_to_df(input = paste0(pdf_path, "/", files[1]))
 print(extracted_refs)
 ```
 
+## Credits
+
+*anystyle* has been developed by [Alex Fenton](https://github.com/a-fent), [Sylvester Keil](https://github.com/inukshuk), [Johannes Krtek](https://github.com/flachware) and [Ilja Srna](https://github.com/namyra). *anystyle* is under copyright: Copyright 2011-2018 Sylvester Keil. All rights reserved. See the [Licence](https://github.com/inukshuk/anystyle-cli/blob/master/LICENSE) for details.
+
+The logo of *Ranystyle* has been generated with DALL·E.
