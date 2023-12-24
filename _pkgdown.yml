@@ -1,5 +1,35 @@
 url: https://agoutsmedt.github.io/Ranystyle/
 template:
   bootstrap: 5
-  bootswatch: cerulean
+  bootswatch: yeti
 
+reference:
+- title: "Installing anystyle"
+  desc: >
+    Function for installing anystyle Ruby gems
+  contents:
+  - install_anystyle
+
+- title: "Finding and Parsing References"
+  desc: >
+    Functions using the `parse` and `find` functions of anystyle to extract references
+    from PDF and text documents.
+  contents:
+  - find_ref
+  - parse_ref
+  - find_ref_to_df
+  - parse_ref_to_df
+
+- title: "Manipulating References"
+  desc: >
+    Functions to clean references extracted from `parse` and `find` anystyle functions.
+  contents:
+  - clean_ref
+
+- title: "Building Bibliography"
+  desc: >
+    Functions to build a bibliography from references extracted with `parse` and `find`
+    anystyle functions.
+  contents:
+  - find_ref_to_word_bibliography
+  - parse_ref_to_word_bibliography

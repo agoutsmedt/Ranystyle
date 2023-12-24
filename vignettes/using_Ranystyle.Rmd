@@ -1,7 +1,7 @@
 ---
 title: "Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References"
 author: "Aurélien Goutsmedt"
-output: 
+output:
   rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References}
@@ -35,7 +35,7 @@ RubyGems [here](https://rubygems.org/pages/download?locale=fr).
 install_anystyle()
 ```
 
-# Extracting References from PDFs and text files
+# Extracting References from PDF and text files
 
 The `find_ref()` function is used to extract references from PDF documents. It utilizes the 'anystyle' Ruby gem `find` function to analyze the document and identify reference sections from PDF. The `parse_ref()` function, coming from anystyle `parse` function, is designed to parse structured references from text files or from a vector of character. It reads the text, applies parsing rules, and converts the references into a structured format.
 
@@ -44,12 +44,11 @@ The package incorporates various academic PDFs with bibliographies, as well as t
 
 ```r
 # Path to the documents of the package
-pdf_path <- system.file("extdata", package = "Ranystyle") 
+pdf_path <- system.file("extdata", package = "Ranystyle")
 files <- list.files(pdf_path)
 
 files
-#> [1] "example_doc_1.pdf" "example_doc_1.txt" "example_doc_2.pdf" "example_doc_2.txt" "example_doc_3.pdf"
-#> [6] "example_doc_3.txt"
+#> [1] "example_doc_1.pdf" "example_doc_1.txt" "example_doc_2.pdf" "example_doc_2.txt" "example_doc_3.pdf" "example_doc_3.txt"
 ```
 
 You can save the parsed references in various format: `bib`, `json`, `xml` or `ref` (a text document with one reference per line). By setting `path = ""` in `find_ref()` or `parse_ref()`, you can directly extract the results in R, rather than saving the results. Let's see an example with a PDF.^[The `no_layout` parameter can be set to TRUE when the bibliography has several columns.]
@@ -112,7 +111,7 @@ cat(stringr::str_trunc(extracted_refs, 640))
 
 # From Reference to Data Frame
 
-Depending on whether your start from PDFs or from .txt. or vectors, you can use two functions: `find_ref_to_df()` and `parse_ref_to_df()`. These functions create a data frame (a `tibble` more precisely) gathering the various information of the references extracted.
+Depending on whether your start from PDF documents or from text documents or vectors, you can use two functions: `find_ref_to_df()` and `parse_ref_to_df()`. These functions create a data frame (a `tibble` more precisely) gathering the various information of the references extracted.
 
 
 ```r
@@ -126,28 +125,27 @@ data_ref <- find_ref_to_df(input = paste0(pdf_path, "/", doc),
 
 print(data_ref)
 #> # A tibble: 81 × 23
-#>    id_doc doc        id_ref author   title  year `container-title` volume pages location publisher type  date  other_date
-#>     <int> <chr>      <chr>  <list>   <chr> <int> <chr>             <chr>  <chr> <chr>    <chr>     <chr> <chr> <chr>     
-#>  1      1 example_d… 1_1    <tibble> ECB …  2023 Financial Times   <NA>   <NA>  <NA>     <NA>      arti… 2023  <NA>      
-#>  2      1 example_d… 1_2    <tibble> Rule…  1983 Journal of Monet… 12     101–… <NA>     <NA>      arti… 1983  <NA>      
-#>  3      1 example_d… 1_3    <tibble> Idea…  2009 Journal of Europ… 16     701–… <NA>     <NA>      arti… 2009  <NA>      
-#>  4      1 example_d… 1_4    <tibble> A st…  1999 Scottish Journal… 46     17–39 <NA>     <NA>      arti… 1999  <NA>      
-#>  5      1 example_d… 1_5    <tibble> Tech…  2018 International Po… 12     328–… <NA>     <NA>      arti… 2018  <NA>      
-#>  6      1 example_d… 1_6    <tibble> Late…  2003 Journal of Machi… 3      <NA>  <NA>     <NA>      arti… 2003  <NA>      
-#>  7      1 example_d… 1_7    <tibble> Plan…  2022 Zeitschrift Für … 32     707–… <NA>     <NA>      arti… 2022  <NA>      
-#>  8      1 example_d… 1_8    <tibble> Repu…  2010 <NA>              <NA>   <NA>  <NA>     Princeto… book  2010  <NA>      
-#>  9      1 example_d… 1_9    <tibble> The …  2016 At the Macroecon… <NA>   <NA>  <NA>     <NA>      pape… 2016  <NA>      
-#> 10      1 example_d… 1_10   <tibble> Effe…  2017 At the EUROFI Co… <NA>   <NA>  <NA>     <NA>      pape… 2017  <NA>      
+#>    id_doc doc         id_ref author   title  year `container-title` volume pages location publisher type  date  other_date other_title url   issue doi  
+#>     <int> <chr>       <chr>  <list>   <chr> <int> <chr>             <chr>  <chr> <chr>    <chr>     <chr> <chr> <chr>      <chr>       <chr> <chr> <chr>
+#>  1      1 example_do… 1_1    <tibble> ECB …  2023 Financial Times   <NA>   <NA>  <NA>     <NA>      arti… 2023  <NA>       <NA>        <NA>  <NA>  <NA> 
+#>  2      1 example_do… 1_2    <tibble> Rule…  1983 Journal of Monet… 12     101–… <NA>     <NA>      arti… 1983  <NA>       <NA>        http… 1     10.1…
+#>  3      1 example_do… 1_3    <tibble> Idea…  2009 Journal of Europ… 16     701–… <NA>     <NA>      arti… 2009  <NA>       <NA>        <NA>  5     <NA> 
+#>  4      1 example_do… 1_4    <tibble> A st…  1999 Scottish Journal… 46     17–39 <NA>     <NA>      arti… 1999  <NA>       <NA>        <NA>  1     <NA> 
+#>  5      1 example_do… 1_5    <tibble> Tech…  2018 International Po… 12     328–… <NA>     <NA>      arti… 2018  <NA>       <NA>        <NA>  4     <NA> 
+#>  6      1 example_do… 1_6    <tibble> Late…  2003 Journal of Machi… 3      <NA>  <NA>     <NA>      arti… 2003  <NA>       <NA>        <NA>  <NA>  <NA> 
+#>  7      1 example_do… 1_7    <tibble> Plan…  2022 Zeitschrift Für … 32     707–… <NA>     <NA>      arti… 2022  <NA>       <NA>        http… 3     10.1…
+#>  8      1 example_do… 1_8    <tibble> Repu…  2010 <NA>              <NA>   <NA>  <NA>     Princeto… book  2010  <NA>       <NA>        <NA>  <NA>  <NA> 
+#>  9      1 example_do… 1_9    <tibble> The …  2016 At the Macroecon… <NA>   <NA>  <NA>     <NA>      pape… 2016  <NA>       <NA>        http… <NA>  <NA> 
+#> 10      1 example_do… 1_10   <tibble> Effe…  2017 At the EUROFI Co… <NA>   <NA>  <NA>     <NA>      pape… 2017  <NA>       <NA>        http… <NA>  <NA> 
 #> # ℹ 71 more rows
-#> # ℹ 9 more variables: other_title <chr>, url <chr>, issue <chr>, doi <chr>, edition <chr>, genre <chr>, note <chr>,
-#> #   editor <chr>, full_ref <chr>
+#> # ℹ 5 more variables: edition <chr>, genre <chr>, note <chr>, editor <chr>, full_ref <chr>
 ```
 
-`find_ref_to_df()` and `parse_ref_to_df()` can also take multiple PDF or .txt documents and create a data frame from them.
+`find_ref_to_df()` and `parse_ref_to_df()` can also take multiple PDF or text documents and create a data frame from them.
 
 
 ```r
-pdfs <- files %>% 
+pdfs <- files %>%
   .[stringr::str_detect(., "\\.pdf$")]
 data_ref <- find_ref_to_df(input = paste0(pdf_path, "/", pdfs),
                            clean_ref = FALSE,
@@ -161,45 +159,45 @@ data_ref <- find_ref_to_df(input = paste0(pdf_path, "/", pdfs),
 
 data_ref
 #> # A tibble: 266 × 21
-#>    id_doc doc      id_ref author date  title type  `container-title` volume pages  url    issue  doi   publisher location
-#>     <int> <chr>    <chr>  <list> <lis> <lis> <chr> <list>            <list> <list> <list> <list> <chr> <chr>     <chr>   
-#>  1      1 example… 1_1    <df>   <chr> <chr> arti… <chr [1]>         <NULL> <NULL> <NULL> <NULL> <NA>  <NA>      <NA>    
-#>  2      1 example… 1_2    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <chr>  <chr>  10.1… <NA>      <NA>    
-#>  3      1 example… 1_3    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <NULL> <chr>  <NA>  <NA>      <NA>    
-#>  4      1 example… 1_4    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <NULL> <chr>  <NA>  <NA>      <NA>    
-#>  5      1 example… 1_5    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <NULL> <chr>  <NA>  <NA>      <NA>    
-#>  6      1 example… 1_6    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <NULL> <NULL> <NULL> <NA>  <NA>      <NA>    
-#>  7      1 example… 1_7    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <chr>  <chr>  10.1… <NA>      <NA>    
-#>  8      1 example… 1_8    <df>   <chr> <chr> book  <NULL>            <NULL> <NULL> <NULL> <NULL> <NA>  Princeto… <NA>    
-#>  9      1 example… 1_9    <df>   <chr> <chr> pape… <chr [1]>         <NULL> <NULL> <chr>  <NULL> <NA>  <NA>      <NA>    
-#> 10      1 example… 1_10   <df>   <chr> <chr> pape… <chr [1]>         <NULL> <NULL> <chr>  <NULL> <NA>  <NA>      <NA>    
+#>    id_doc doc          id_ref author date  title type  `container-title` volume pages  url    issue  doi   publisher location edition genre note  editor
+#>     <int> <chr>        <chr>  <list> <lis> <lis> <chr> <list>            <list> <list> <list> <list> <chr> <chr>     <chr>    <chr>   <chr> <chr> <list>
+#>  1      1 example_doc… 1_1    <df>   <chr> <chr> arti… <chr [1]>         <NULL> <NULL> <NULL> <NULL> <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  2      1 example_doc… 1_2    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <chr>  <chr>  10.1… <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  3      1 example_doc… 1_3    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <NULL> <chr>  <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  4      1 example_doc… 1_4    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <NULL> <chr>  <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  5      1 example_doc… 1_5    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <NULL> <chr>  <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  6      1 example_doc… 1_6    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <NULL> <NULL> <NULL> <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  7      1 example_doc… 1_7    <df>   <chr> <chr> arti… <chr [1]>         <chr>  <chr>  <chr>  <chr>  10.1… <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  8      1 example_doc… 1_8    <df>   <chr> <chr> book  <NULL>            <NULL> <NULL> <NULL> <NULL> <NA>  Princeto… <NA>     <NA>    <NA>  <NA>  <NULL>
+#>  9      1 example_doc… 1_9    <df>   <chr> <chr> pape… <chr [1]>         <NULL> <NULL> <chr>  <NULL> <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
+#> 10      1 example_doc… 1_10   <df>   <chr> <chr> pape… <chr [1]>         <NULL> <NULL> <chr>  <NULL> <NA>  <NA>      <NA>     <NA>    <NA>  <NA>  <NULL>
 #> # ℹ 256 more rows
-#> # ℹ 6 more variables: edition <chr>, genre <chr>, note <chr>, editor <list>, `collection-title` <chr>, full_ref <chr>
+#> # ℹ 2 more variables: `collection-title` <chr>, full_ref <chr>
 ```
 
-As you may have seen, anystyle runs twice per document: the second time serve to extract the references in a .ref format, and is used to keep the whole reference in a column of the table. This could be useful for cleaning the data later. 
+As you may have seen, anystyle runs twice per document: the second time serve to extract the references in a `.ref` format, and is used to keep the whole reference in a column of the table. This could be useful for cleaning the data later.
 
 
 ```r
-data_ref %>% 
+data_ref %>%
   dplyr::select(id_ref, full_ref)
 #> # A tibble: 266 × 2
-#>    id_ref full_ref                                                                                                       
-#>    <chr>  <chr>                                                                                                          
-#>  1 1_1    Arnold, M. (2023). ECB must do more to tackle inflation “Monster”, says christine lagarde’. Financial Times.   
-#>  2 1_2    Barro, R. J., & Gordon, D. B. (1983). Rules, discretion and reputation in a model of monetary policy’. Journal…
-#>  3 1_3    Béland, D. (2009). Ideas, institutions, and policy change’. Journal of European Public Policy, 16(5), 701–718. 
-#>  4 1_4    Berger, H., & Haan, J. (1999). A state within the state? An event study on the bundesbank (1948–1973)’. Scotti…
-#>  5 1_5    Best, J. (2018). Technocratic exceptionalism: Monetary policy and the fear of democracy’. International Politi…
-#>  6 1_6    Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation’. Journal of Machine Learning Rese…
-#>  7 1_7    Braun, B., Carlo, D., & Diessner, S. (2022). Planning Laissez-Faire: Supranational Central Banking and Structu…
-#>  8 1_8    Carpenter, D. P. (2010). Reputation and power: Organizational image and pharmaceutical regulation at the FDA. …
-#>  9 1_9    Constâncio, V. (2016). The challenge of low real interest rates for monetary policy’. At the Macroeconomics Sy…
-#> 10 1_10   Constâncio, V. (2017). Effectiveness of monetary union and the capital markets union’. At the EUROFI Conferenc…
+#>    id_ref full_ref                                                                                                                                      
+#>    <chr>  <chr>                                                                                                                                         
+#>  1 1_1    Arnold, M. (2023). ECB must do more to tackle inflation “Monster”, says christine lagarde’. Financial Times.                                  
+#>  2 1_2    Barro, R. J., & Gordon, D. B. (1983). Rules, discretion and reputation in a model of monetary policy’. Journal of Monetary Economics, 12(1), …
+#>  3 1_3    Béland, D. (2009). Ideas, institutions, and policy change’. Journal of European Public Policy, 16(5), 701–718.                                
+#>  4 1_4    Berger, H., & Haan, J. (1999). A state within the state? An event study on the bundesbank (1948–1973)’. Scottish Journal of Political Economy…
+#>  5 1_5    Best, J. (2018). Technocratic exceptionalism: Monetary policy and the fear of democracy’. International Political Sociology, 12(4), 328–345.  
+#>  6 1_6    Blei, D. M., Ng, A. Y., & Jordan, M. I. (2003). Latent Dirichlet Allocation’. Journal of Machine Learning Research, 3.                        
+#>  7 1_7    Braun, B., Carlo, D., & Diessner, S. (2022). Planning Laissez-Faire: Supranational Central Banking and Structural Reforms’. Zeitschrift Für P…
+#>  8 1_8    Carpenter, D. P. (2010). Reputation and power: Organizational image and pharmaceutical regulation at the FDA. Princeton University Press.     
+#>  9 1_9    Constâncio, V. (2016). The challenge of low real interest rates for monetary policy’. At the Macroeconomics Symposium, Utrecht School of Econ…
+#> 10 1_10   Constâncio, V. (2017). Effectiveness of monetary union and the capital markets union’. At the EUROFI Conference. https://www.bis.org//review/…
 #> # ℹ 256 more rows
 ```
 
-The data extracted are still a bit messy. Most columns are in list format, with sometimes two or more element per reference (like two dates, or two titles). The `clean_ref()` function implements different cleaning processes: 
+The data extracted are still a bit messy. Most columns are in list format, with sometimes two or more element per reference (like two dates, or two titles). The `clean_ref()` function implements different cleaning processes:
 
 - It collapses non-essential columns (i.e. other than `date` and `title`), combining multiple entries into a single text string.
 - It reorganizes `author` information, creating a full name from given, particle, and family components. Also add an `author_order` column. The column will remain in a list format.
@@ -210,27 +208,79 @@ The data extracted are still a bit messy. Most columns are in list format, with 
 
 
 ```r
-data_ref <- clean_ref(data_ref) 
+data_ref <- clean_ref(data_ref)
 
 data_ref
 #> # A tibble: 266 × 24
-#>    id_doc doc        id_ref author   title  year `container-title` volume pages location publisher type  date  other_date
-#>     <int> <chr>      <chr>  <list>   <chr> <int> <chr>             <chr>  <chr> <chr>    <chr>     <chr> <chr> <chr>     
-#>  1      1 example_d… 1_1    <tibble> ECB …  2023 Financial Times   <NA>   <NA>  <NA>     <NA>      arti… 2023  <NA>      
-#>  2      1 example_d… 1_2    <tibble> Rule…  1983 Journal of Monet… 12     101–… <NA>     <NA>      arti… 1983  <NA>      
-#>  3      1 example_d… 1_3    <tibble> Idea…  2009 Journal of Europ… 16     701–… <NA>     <NA>      arti… 2009  <NA>      
-#>  4      1 example_d… 1_4    <tibble> A st…  1999 Scottish Journal… 46     17–39 <NA>     <NA>      arti… 1999  <NA>      
-#>  5      1 example_d… 1_5    <tibble> Tech…  2018 International Po… 12     328–… <NA>     <NA>      arti… 2018  <NA>      
-#>  6      1 example_d… 1_6    <tibble> Late…  2003 Journal of Machi… 3      <NA>  <NA>     <NA>      arti… 2003  <NA>      
-#>  7      1 example_d… 1_7    <tibble> Plan…  2022 Zeitschrift Für … 32     707–… <NA>     <NA>      arti… 2022  <NA>      
-#>  8      1 example_d… 1_8    <tibble> Repu…  2010 <NA>              <NA>   <NA>  <NA>     Princeto… book  2010  <NA>      
-#>  9      1 example_d… 1_9    <tibble> The …  2016 At the Macroecon… <NA>   <NA>  <NA>     <NA>      pape… 2016  <NA>      
-#> 10      1 example_d… 1_10   <tibble> Effe…  2017 At the EUROFI Co… <NA>   <NA>  <NA>     <NA>      pape… 2017  <NA>      
+#>    id_doc doc         id_ref author   title  year `container-title` volume pages location publisher type  date  other_date other_title url   issue doi  
+#>     <int> <chr>       <chr>  <list>   <chr> <int> <chr>             <chr>  <chr> <chr>    <chr>     <chr> <chr> <chr>      <chr>       <chr> <chr> <chr>
+#>  1      1 example_do… 1_1    <tibble> ECB …  2023 Financial Times   <NA>   <NA>  <NA>     <NA>      arti… 2023  <NA>       <NA>        <NA>  <NA>  <NA> 
+#>  2      1 example_do… 1_2    <tibble> Rule…  1983 Journal of Monet… 12     101–… <NA>     <NA>      arti… 1983  <NA>       <NA>        http… 1     10.1…
+#>  3      1 example_do… 1_3    <tibble> Idea…  2009 Journal of Europ… 16     701–… <NA>     <NA>      arti… 2009  <NA>       <NA>        <NA>  5     <NA> 
+#>  4      1 example_do… 1_4    <tibble> A st…  1999 Scottish Journal… 46     17–39 <NA>     <NA>      arti… 1999  <NA>       <NA>        <NA>  1     <NA> 
+#>  5      1 example_do… 1_5    <tibble> Tech…  2018 International Po… 12     328–… <NA>     <NA>      arti… 2018  <NA>       <NA>        <NA>  4     <NA> 
+#>  6      1 example_do… 1_6    <tibble> Late…  2003 Journal of Machi… 3      <NA>  <NA>     <NA>      arti… 2003  <NA>       <NA>        <NA>  <NA>  <NA> 
+#>  7      1 example_do… 1_7    <tibble> Plan…  2022 Zeitschrift Für … 32     707–… <NA>     <NA>      arti… 2022  <NA>       <NA>        http… 3     10.1…
+#>  8      1 example_do… 1_8    <tibble> Repu…  2010 <NA>              <NA>   <NA>  <NA>     Princeto… book  2010  <NA>       <NA>        <NA>  <NA>  <NA> 
+#>  9      1 example_do… 1_9    <tibble> The …  2016 At the Macroecon… <NA>   <NA>  <NA>     <NA>      pape… 2016  <NA>       <NA>        http… <NA>  <NA> 
+#> 10      1 example_do… 1_10   <tibble> Effe…  2017 At the EUROFI Co… <NA>   <NA>  <NA>     <NA>      pape… 2017  <NA>       <NA>        http… <NA>  <NA> 
 #> # ℹ 256 more rows
-#> # ℹ 10 more variables: other_title <chr>, url <chr>, issue <chr>, doi <chr>, edition <chr>, genre <chr>, note <chr>,
-#> #   editor <chr>, `collection-title` <chr>, full_ref <chr>
+#> # ℹ 6 more variables: edition <chr>, genre <chr>, note <chr>, editor <chr>, `collection-title` <chr>, full_ref <chr>
 ```
 
 These cleaning steps are directly implemented in `find_ref_to_df()` and `parse_ref_to_df()`: you just need to set `clean_ref` to TRUE.
 
+# From References to Word Document
 
+The `Ranystyle` package provides two powerful functions, `find_ref_to_word_bibliography()` and `parse_ref_to_word_bibliography()`, designed to streamline the process of extracting bibliographic references from documents and compiling them into a formatted Word document. Whether working with dense academic papers in PDF format or plain text files, these functions are your gateway to an organized and presentable bibliography. For instance, it allows you to extract the bibliography of a PDF and reproduce it in a Word document but in a different [Citation Style Language (CSL)](https://fr.wikipedia.org/wiki/Citation_Style_Language).
+
+## Extracting References from PDFs to Word
+
+The find_ref_to_word_bibliography function is designed to extract references from PDF documents. It utilizes the find_ref() function under the hood to analyze the PDF and identify reference sections. Once the references are extracted, they are converted into a '.bib' format and subsequently used to generate a Word document with a formatted bibliography.
+
+
+```r
+# Path to the PDF document
+pdf_path <- "path/to/your/document.pdf"
+
+# Output Word file path (optional)
+word_output_path <- "path/to/output/bibliography.docx"
+
+# CSL file path for formatting (optional)
+csl_path <- "path/to/your/style.csl"
+
+# Extract references and generate the Word bibliography
+find_ref_to_word_bibliography(input = pdf_path,
+                              output_file = word_output_path,
+                              csl_path = csl_path)
+```
+
+## Parsing References from Text Files to Word
+
+The parse_ref_to_word_bibliography function caters to those who prefer working with plain text files, have references in a text format. It also
+allows you to build a word document bibliography directly from references stored in a vector of strings
+
+
+
+```r
+# List of references
+references <- c(
+  "Smith, J. (2020). Understanding Artificial Intelligence. AI Journal, 35(5), 123-145.",
+  "Johnson, L., & Brown, C. (2018). Advances in Machine Learning. New York: Academic Press.",
+  "Clark, E., & Wright, R. (2019). Robotics and Automation. London: Springer, 200-250.",
+  "Davis, M. (2021). Quantum Computing: A New Era. Quantum Computing, 5(3), 300-320.",
+  "Adams, J., & Murphy, F. (2022). Exploring Virtual Reality. VR World, 10(7), 777-800."
+)
+
+# Output Word file path (optional)
+word_output_path <- "path/to/output/bibliography.docx"
+
+# CSL file path for formatting (optional)
+csl_path <- "path/to/your/style.csl"
+
+# Parse references and generate the Word bibliography
+parse_ref_to_word_bibliography(input = references,
+                               output_file = word_output_path,
+                               csl_path = csl_path)
+
+```

@@ -6,6 +6,8 @@
 \alias{Ranystyle-package}
 \title{Ranystyle: Automated Bibliographic Reference Parsing and Cleaning}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Provides tools for automated extraction, parsing, and cleaning of bibliographic references from PDF and text documents. Utilizing the 'anystyle' Ruby gem, it segments references and converts them into structured formats. The package offers functions to reorganize and clean the data, making it easier to analyze and use bibliographic information. It handles various input and output formats and provides utilities for detailed reference management.
 }
 \seealso{

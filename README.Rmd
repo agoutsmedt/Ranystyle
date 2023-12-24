@@ -13,7 +13,8 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Ranystyle
+# Ranystyle <img src="man/figures/logo.png" align="right" alt="" width="120" />
+
 
 <!-- badges: start -->
 [![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
@@ -43,7 +44,7 @@ Here's a basic example of how you might use Ranystyle to parse and clean referen
 ```{r example}
 library(Ranystyle)
 # Path to your PDF document
-pdf_path <- system.file("extdata", package = "Ranystyle") 
+pdf_path <- system.file("extdata", package = "Ranystyle")
 files <- list.files(pdf_path)
 
 # Extract references from the PDF

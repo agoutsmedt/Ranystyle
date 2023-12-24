@@ -26,15 +26,17 @@
 #' by setting the `clean_ref` parameter to TRUE.
 #'
 #' @export
-clean_ref <- function(data){
+clean_ref <- function(data) {
   data <- data %>%
     collapse_non_essential_columns() %>%
     reorganize_author() %>%
     separate_data_and_title() %>%
     dplyr::mutate(year = stringr::str_extract(.data$date, "[:digit:]{4}") %>% as.integer()) %>%
     dplyr::relocate(.data$author, .data$title, .data$year, .data$`container-title`, .data$volume, .data$pages, .data$location, .data$publisher, .data$type, .after = .data$id_ref) %>%
-    dplyr::mutate(dplyr::across(dplyr::where(is.character), ~stringr::str_remove_all(., "^[:punct:]+|[:punct:]+$")), # basic cleaning content of columns
-                  dplyr::across(dplyr::where(is.character), ~stringr::str_trim(., "both")))
+    dplyr::mutate(
+      dplyr::across(dplyr::where(is.character), ~ stringr::str_remove_all(., "^[:punct:]+|[:punct:]+$")), # basic cleaning content of columns
+      dplyr::across(dplyr::where(is.character), ~ stringr::str_trim(., "both"))
+    )
 }
 
 #' Collapse Non-Essential Columns (Internal)
@@ -47,21 +49,27 @@ clean_ref <- function(data){
 #' @return A data frame with non-essential information collapsed.
 #'
 #' @keywords internal
-collapse_non_essential_columns <- function(data){
+collapse_non_essential_columns <- function(data) {
   . <- NULL
   # We unlist non essential list columns and collapse with a break of line (for the list information to be recovered later)
-  non_essential_columns <- purrr::map(data, ~purrr::map_int(., length)) %>%
-    purrr::map_lgl(., ~any(. > 1)) %>%
+  non_essential_columns <- purrr::map(data, ~ purrr::map_int(., length)) %>%
+    purrr::map_lgl(., ~ any(. > 1)) %>%
     which(isTRUE(.)) %>%
     names() %>%
     .[-which(. %in% c("author", "title", "date"))]
 
   data <- data %>%
     dplyr::group_by(.data$id_ref) %>%
-    dplyr::mutate(dplyr::across(dplyr::all_of(non_essential_columns),
-                                ~paste0(unlist(.), collapse = "\n")),
-                  dplyr::across(dplyr::all_of(non_essential_columns),
-                                ~ifelse(. == "", NA_character_, .)))
+    dplyr::mutate(
+      dplyr::across(
+        dplyr::all_of(non_essential_columns),
+        ~ paste0(unlist(.), collapse = "\n")
+      ),
+      dplyr::across(
+        dplyr::all_of(non_essential_columns),
+        ~ ifelse(. == "", NA_character_, .)
+      )
+    )
 }
 
 #' Reorganize Author Information (Internal)
@@ -74,15 +82,17 @@ collapse_non_essential_columns <- function(data){
 #' @return A data frame with reorganized author information.
 #'
 #' @keywords internal
-reorganize_author <- function(data){
+reorganize_author <- function(data) {
   . <- NULL
   # we unnest the authors column and create a new column with the full name of the authors
   data <- data %>%
     tidyr::unnest_wider(.data$author, names_sep = "_") %>%
     tidyr::unnest(dplyr::starts_with("author"), keep_empty = TRUE) %>%
-    dplyr::mutate(author_particle = if("author_particle" %in% names(.)) .data$author_particle else "", # In case there is no author_particle col
-                  author = paste(.data$author_given, .data$author_particle, .data$author_family) %>%
-                    stringr::str_remove_all(., "^NA | NA$| NA")) %>%
+    dplyr::mutate(
+      author_particle = if ("author_particle" %in% names(.)) .data$author_particle else "", # In case there is no author_particle col
+      author = paste(.data$author_given, .data$author_particle, .data$author_family) %>%
+        stringr::str_remove_all(., "^NA | NA$| NA")
+    ) %>%
     dplyr::group_by(.data$id_ref) %>%
     dplyr::mutate(author_order = 1:dplyr::n()) %>%
     tidyr::nest(author = dplyr::starts_with("author")) %>%
@@ -99,14 +109,19 @@ reorganize_author <- function(data){
 #' @return A data frame with separated and cleaned date and title information.
 #'
 #' @keywords internal
-separate_data_and_title <- function(data){
+separate_data_and_title <- function(data) {
   . <- NULL
   data <- data %>%
     tidyr::unnest_wider(c(.data$date, .data$title), names_sep = "_") %>%
-    dplyr::rename(date = .data$date_1,
-                  title = .data$title_1) %>%
-    {if("date_2" %in% names(.)) tidyr::unite(., "other_date", dplyr::starts_with("date_"), sep = "\n", na.rm = TRUE) else .} %>%
-    {if("title_2" %in% names(.)) tidyr::unite(., "other_title", dplyr::starts_with("title_"), sep = "\n", na.rm = TRUE) else .} %>%
-    dplyr::mutate(dplyr::across(dplyr::starts_with("other_"), ~ifelse(. == "", NA_character_, .)))
-
+    dplyr::rename(
+      date = .data$date_1,
+      title = .data$title_1
+    ) %>%
+    {
+      if ("date_2" %in% names(.)) tidyr::unite(., "other_date", dplyr::starts_with("date_"), sep = "\n", na.rm = TRUE) else .
+    } %>%
+    {
+      if ("title_2" %in% names(.)) tidyr::unite(., "other_title", dplyr::starts_with("title_"), sep = "\n", na.rm = TRUE) else .
+    } %>%
+    dplyr::mutate(dplyr::across(dplyr::starts_with("other_"), ~ ifelse(. == "", NA_character_, .)))
 }

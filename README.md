@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# Ranystyle
+# Ranystyle <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 <!-- badges: start -->
 
@@ -56,13 +56,13 @@ references from a PDF document:
 ``` r
 library(Ranystyle)
 # Path to your PDF document
-pdf_path <- system.file("extdata", package = "Ranystyle") 
+pdf_path <- system.file("extdata", package = "Ranystyle")
 files <- list.files(pdf_path)
 
 # Extract references from the PDF
 extracted_refs <- find_ref_to_df(input = paste0(pdf_path, "/", files[1]))
-#> [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath5104423022cc/Ranystyle/extdata/example_doc_1.pdf "
-#> [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath5104423022cc/Ranystyle/extdata/example_doc_1.pdf ./"
+#> [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf "
+#> [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf ./"
 
 # Print the extracted references
 print(extracted_refs)

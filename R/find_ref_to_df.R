@@ -51,7 +51,7 @@
 find_ref_to_df <- function(
     input = NULL,
     no_layout = FALSE,
-    clean_ref = TRUE){
+    clean_ref = TRUE) {
   results <- find_ref(
     input = input,
     path = "",
@@ -70,11 +70,11 @@ find_ref_to_df <- function(
   names(full_ref) <- basename(input)
   for (ref in input) {
     ref_file <- stringr::str_replace(basename(ref), "\\.pdf", ".ref")
-    if(file.exists(ref_file)){ # to handle document with no reference
-    options(warn = -1) # remove unnecessary warnings
-    full_ref[[basename(ref)]] <- tibble::tibble(full_ref = readLines(ref_file))
-    options(warn = 0)
-    file.remove(ref_file)
+    if (file.exists(ref_file)) { # to handle document with no reference
+      options(warn = -1) # remove unnecessary warnings
+      full_ref[[basename(ref)]] <- tibble::tibble(full_ref = readLines(ref_file))
+      options(warn = 0)
+      file.remove(ref_file)
     }
   }
 
@@ -106,7 +106,7 @@ parse_ref_to_df <- function(
     names(full_ref) <- basename(input)
     for (ref in input) {
       ref_file <- stringr::str_replace(basename(ref), "\\.txt", ".ref")
-      if(file.exists(ref_file)){ # to handle document with no reference
+      if (file.exists(ref_file)) { # to handle document with no reference
         options(warn = -1) # remove unnecessary warnings
         full_ref[[basename(ref)]] <- tibble::tibble(full_ref = readLines(ref_file))
         options(warn = 0)
