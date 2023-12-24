@@ -63,6 +63,9 @@
     <a class="dropdown-item" href="articles/using_Ranystyle.html">Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -84,7 +87,7 @@
 <div class="row">
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header">
-<img src="logo.png" class="logo" alt=""><h1 id="ranystyle">Ranystyle<a class="anchor" aria-label="anchor" href="#ranystyle"></a>
+<img src="logo.png" class="logo" alt=""><h1 id="ranystyle-">Ranystyle <a class="anchor" aria-label="anchor" href="#ranystyle-"></a>
 </h1>
 </div>
 <!-- badges: start -->
@@ -126,13 +129,13 @@
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/agoutsmedt/Ranystyle" class="external-link">Ranystyle</a></span><span class="op">)</span></span>
 <span><span class="co"># Path to your PDF document</span></span>
-<span><span class="va">pdf_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"Ranystyle"</span><span class="op">)</span> </span>
+<span><span class="va">pdf_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"Ranystyle"</span><span class="op">)</span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">pdf_path</span><span class="op">)</span></span>
 <span></span>
 <span><span class="co"># Extract references from the PDF</span></span>
 <span><span class="va">extracted_refs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/find_ref_to_df.html">find_ref_to_df</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpEtApZg/temp_libpath489842e7298e/Ranystyle/extdata/example_doc_1.pdf "</span></span>
-<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpEtApZg/temp_libpath489842e7298e/Ranystyle/extdata/example_doc_1.pdf ./"</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf "</span></span>
+<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf ./"</span></span>
 <span></span>
 <span><span class="co"># Print the extracted references</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">extracted_refs</span><span class="op">)</span></span>
@@ -153,6 +156,12 @@
 <span><span class="co">#&gt; # ℹ 14 more variables: location &lt;chr&gt;, publisher &lt;chr&gt;, type &lt;chr&gt;, date &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   other_date &lt;chr&gt;, other_title &lt;chr&gt;, url &lt;chr&gt;, issue &lt;chr&gt;, doi &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;, editor &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a>
+</h2>
+<p><em>anystyle</em> has been developed by <a href="https://github.com/a-fent" class="external-link">Alex Fenton</a>, <a href="https://github.com/inukshuk" class="external-link">Sylvester Keil</a>, <a href="https://github.com/flachware" class="external-link">Johannes Krtek</a> and <a href="https://github.com/namyra" class="external-link">Ilja Srna</a>. <em>anystyle</em> is under copyright: Copyright 2011-2018 Sylvester Keil. All rights reserved. See the <a href="https://github.com/inukshuk/anystyle-cli/blob/master/LICENSE" class="external-link">Licence</a> for details.</p>
+<p>The logo of <em>Ranystyle</em> has been generated with DALL·E.</p>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">

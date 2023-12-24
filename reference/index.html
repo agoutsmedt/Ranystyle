@@ -27,6 +27,9 @@
     <a class="dropdown-item" href="../articles/using_Ranystyle.html">Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
@@ -47,9 +50,51 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="installing-anystyle">Installing anystyle<a class="anchor" aria-label="anchor" href="#installing-anystyle"></a></h2>
+      
+      <p class="section-desc"></p><p>Function for installing anystyle Ruby gems</p>
+
+      
+    </div><div id="" class="section level2">
       
       
+      
+
+      <dl><dt>
+          
+          <code><a href="install_anystyle.html">install_anystyle()</a></code> 
+        </dt>
+        <dd>Install anystyle and anystyle-cli</dd>
+      </dl></div><div class="section level2">
+      <h2 id="finding-and-parsing-references">Finding and Parsing References<a class="anchor" aria-label="anchor" href="#finding-and-parsing-references"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions using the <code>parse</code> and <code>find</code> functions of anystyle to extract references from PDF and text documents.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
+          
+          <code><a href="find_ref.html">find_ref()</a></code> 
+        </dt>
+        <dd>Find Bibliographic References in Documents Using Anystyle</dd>
+      </dl><dl><dt>
+          
+          <code><a href="parse_ref.html">parse_ref()</a></code> 
+        </dt>
+        <dd>Parse bibliographic references using anystyle</dd>
+      </dl><dl><dt>
+          
+          <code><a href="find_ref_to_df.html">find_ref_to_df()</a></code> <code><a href="find_ref_to_df.html">parse_ref_to_df()</a></code> 
+        </dt>
+        <dd>Convert Found or Parsed References to Data Frames</dd>
+      </dl></div><div class="section level2">
+      <h2 id="manipulating-references">Manipulating References<a class="anchor" aria-label="anchor" href="#manipulating-references"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions to clean references extracted from <code>parse</code> and <code>find</code> anystyle functions.</p>
 
       
     </div><div id="" class="section level2">
@@ -62,28 +107,25 @@
           <code><a href="clean_ref.html">clean_ref()</a></code> 
         </dt>
         <dd>Clean and Organize Reference Data</dd>
-      </dl><dl><dt>
+      </dl></div><div class="section level2">
+      <h2 id="building-bibliography">Building Bibliography<a class="anchor" aria-label="anchor" href="#building-bibliography"></a></h2>
+      
+      <p class="section-desc"></p><p>Functions to build a bibliography from references extracted with <code>parse</code> and <code>find</code> anystyle functions.</p>
+
+      
+    </div><div id="" class="section level2">
+      
+      
+      
+
+      <dl><dt>
           
-          <code><a href="find_ref.html">find_ref()</a></code> 
+          <code><a href="find_ref_to_word_bibliography.html">find_ref_to_word_bibliography()</a></code> <code><a href="find_ref_to_word_bibliography.html">parse_ref_to_word_bibliography()</a></code> 
         </dt>
-        <dd>Find Bibliographic References in Documents Using Anystyle</dd>
-      </dl><dl><dt>
-          
-          <code><a href="find_ref_to_df.html">find_ref_to_df()</a></code> <code><a href="find_ref_to_df.html">parse_ref_to_df()</a></code> 
-        </dt>
-        <dd>Convert Found or Parsed References to Data Frames</dd>
-      </dl><dl><dt>
-          
-          <code><a href="install_anystyle.html">install_anystyle()</a></code> 
-        </dt>
-        <dd>Install anystyle and anystyle-cli</dd>
-      </dl><dl><dt>
-          
-          <code><a href="parse_ref.html">parse_ref()</a></code> 
-        </dt>
-        <dd>Parse bibliographic references using anystyle</dd>
+        <dd>Create a Word Bibliography from References in PDF or Text Documents</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

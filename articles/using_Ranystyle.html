@@ -51,6 +51,9 @@
     <a class="dropdown-item" href="../articles/using_Ranystyle.html">Using Ranystyle: Extracting, Parsing and Cleaning Bibliographic References</a>
   </div>
 </li>
+<li class="nav-item">
+  <a class="nav-link" href="../news/index.html">Changelog</a>
+</li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off">
@@ -118,7 +121,7 @@ the command line. See more details on Ruby’s installation <a href="https://www
 <span><span class="fu"><a href="../reference/install_anystyle.html">install_anystyle</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="extracting-references-from-pdfs-and-text-files">Extracting References from PDFs and text files<a class="anchor" aria-label="anchor" href="#extracting-references-from-pdfs-and-text-files"></a>
+<h2 id="extracting-references-from-pdf-and-text-files">Extracting References from PDF and text files<a class="anchor" aria-label="anchor" href="#extracting-references-from-pdf-and-text-files"></a>
 </h2>
 <p>The <code><a href="../reference/find_ref.html">find_ref()</a></code> function is used to extract references
 from PDF documents. It utilizes the ‘anystyle’ Ruby gem
@@ -133,12 +136,11 @@ as well as the bibliographies of these PDFs extracted in a .txt format,
 in order to manipulate the different functions of the graph.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># Path to the documents of the package</span></span>
-<span><span class="va">pdf_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"Ranystyle"</span><span class="op">)</span> </span>
+<span><span class="va">pdf_path</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/system.file.html" class="external-link">system.file</a></span><span class="op">(</span><span class="st">"extdata"</span>, package <span class="op">=</span> <span class="st">"Ranystyle"</span><span class="op">)</span></span>
 <span><span class="va">files</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/list.files.html" class="external-link">list.files</a></span><span class="op">(</span><span class="va">pdf_path</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">files</span></span>
-<span><span class="co">#&gt; [1] "example_doc_1.pdf" "example_doc_1.txt" "example_doc_2.pdf" "example_doc_2.txt" "example_doc_3.pdf"</span></span>
-<span><span class="co">#&gt; [6] "example_doc_3.txt"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] "example_doc_1.pdf" "example_doc_1.txt" "example_doc_2.pdf" "example_doc_2.txt" "example_doc_3.pdf" "example_doc_3.txt"</span></span></code></pre></div>
 <p>You can save the parsed references in various format:
 <code>bib</code>, <code>json</code>, <code>xml</code> or
 <code>ref</code> (a text document with one reference per line). By
@@ -196,11 +198,11 @@ with one reference per line.</p>
 <div class="section level2">
 <h2 id="from-reference-to-data-frame">From Reference to Data Frame<a class="anchor" aria-label="anchor" href="#from-reference-to-data-frame"></a>
 </h2>
-<p>Depending on whether your start from PDFs or from .txt. or vectors,
-you can use two functions: <code><a href="../reference/find_ref_to_df.html">find_ref_to_df()</a></code> and
-<code><a href="../reference/find_ref_to_df.html">parse_ref_to_df()</a></code>. These functions create a data frame (a
-<code>tibble</code> more precisely) gathering the various information of
-the references extracted.</p>
+<p>Depending on whether your start from PDF documents or from text
+documents or vectors, you can use two functions:
+<code><a href="../reference/find_ref_to_df.html">find_ref_to_df()</a></code> and <code><a href="../reference/find_ref_to_df.html">parse_ref_to_df()</a></code>. These
+functions create a data frame (a <code>tibble</code> more precisely)
+gathering the various information of the references extracted.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">doc</span> <span class="op">&lt;-</span> <span class="va">files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">doc</span><span class="op">)</span></span>
@@ -212,26 +214,25 @@ the references extracted.</p>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">data_ref</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 81 × 23</span></span>
-<span><span class="co">#&gt;    id_doc doc        id_ref author   title  year `container-title` volume pages location publisher type  date  other_date</span></span>
-<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt;  1      1 example_d… 1_1    &lt;tibble&gt; ECB …  2023 Financial Times   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2023  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  2      1 example_d… 1_2    &lt;tibble&gt; Rule…  1983 Journal of Monet… 12     101–… &lt;NA&gt;     &lt;NA&gt;      arti… 1983  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  3      1 example_d… 1_3    &lt;tibble&gt; Idea…  2009 Journal of Europ… 16     701–… &lt;NA&gt;     &lt;NA&gt;      arti… 2009  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  4      1 example_d… 1_4    &lt;tibble&gt; A st…  1999 Scottish Journal… 46     17–39 &lt;NA&gt;     &lt;NA&gt;      arti… 1999  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  5      1 example_d… 1_5    &lt;tibble&gt; Tech…  2018 International Po… 12     328–… &lt;NA&gt;     &lt;NA&gt;      arti… 2018  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  6      1 example_d… 1_6    &lt;tibble&gt; Late…  2003 Journal of Machi… 3      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2003  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  7      1 example_d… 1_7    &lt;tibble&gt; Plan…  2022 Zeitschrift Für … 32     707–… &lt;NA&gt;     &lt;NA&gt;      arti… 2022  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  8      1 example_d… 1_8    &lt;tibble&gt; Repu…  2010 &lt;NA&gt;              &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     Princeto… book  2010  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  9      1 example_d… 1_9    &lt;tibble&gt; The …  2016 At the Macroecon… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2016  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt; 10      1 example_d… 1_10   &lt;tibble&gt; Effe…  2017 At the EUROFI Co… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2017  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;    id_doc doc         id_ref author   title  year `container-title` volume pages location publisher type  date  other_date other_title url   issue doi  </span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1      1 example_do… 1_1    &lt;tibble&gt; ECB …  2023 Financial Times   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2023  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  2      1 example_do… 1_2    &lt;tibble&gt; Rule…  1983 Journal of Monet… 12     101–… &lt;NA&gt;     &lt;NA&gt;      arti… 1983  &lt;NA&gt;       &lt;NA&gt;        http… 1     10.1…</span></span>
+<span><span class="co">#&gt;  3      1 example_do… 1_3    &lt;tibble&gt; Idea…  2009 Journal of Europ… 16     701–… &lt;NA&gt;     &lt;NA&gt;      arti… 2009  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  5     &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  4      1 example_do… 1_4    &lt;tibble&gt; A st…  1999 Scottish Journal… 46     17–39 &lt;NA&gt;     &lt;NA&gt;      arti… 1999  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  1     &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  5      1 example_do… 1_5    &lt;tibble&gt; Tech…  2018 International Po… 12     328–… &lt;NA&gt;     &lt;NA&gt;      arti… 2018  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  4     &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  6      1 example_do… 1_6    &lt;tibble&gt; Late…  2003 Journal of Machi… 3      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2003  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  7      1 example_do… 1_7    &lt;tibble&gt; Plan…  2022 Zeitschrift Für … 32     707–… &lt;NA&gt;     &lt;NA&gt;      arti… 2022  &lt;NA&gt;       &lt;NA&gt;        http… 3     10.1…</span></span>
+<span><span class="co">#&gt;  8      1 example_do… 1_8    &lt;tibble&gt; Repu…  2010 &lt;NA&gt;              &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     Princeto… book  2010  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  9      1 example_do… 1_9    &lt;tibble&gt; The …  2016 At the Macroecon… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2016  &lt;NA&gt;       &lt;NA&gt;        http… &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 10      1 example_do… 1_10   &lt;tibble&gt; Effe…  2017 At the EUROFI Co… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2017  &lt;NA&gt;       &lt;NA&gt;        http… &lt;NA&gt;  &lt;NA&gt; </span></span>
 <span><span class="co">#&gt; # ℹ 71 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 9 more variables: other_title &lt;chr&gt;, url &lt;chr&gt;, issue &lt;chr&gt;, doi &lt;chr&gt;, edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   editor &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 5 more variables: edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;, editor &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
 <p><code><a href="../reference/find_ref_to_df.html">find_ref_to_df()</a></code> and <code><a href="../reference/find_ref_to_df.html">parse_ref_to_df()</a></code> can
-also take multiple PDF or .txt documents and create a data frame from
+also take multiple PDF or text documents and create a data frame from
 them.</p>
 <div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">pdfs</span> <span class="op">&lt;-</span> <span class="va">files</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">pdfs</span> <span class="op">&lt;-</span> <span class="va">files</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="va">.</span><span class="op">[</span><span class="fu">stringr</span><span class="fu">::</span><span class="fu"><a href="https://stringr.tidyverse.org/reference/str_detect.html" class="external-link">str_detect</a></span><span class="op">(</span><span class="va">.</span>, <span class="st">"\\.pdf$"</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="va">data_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/find_ref_to_df.html">find_ref_to_df</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">pdfs</span><span class="op">)</span>,</span>
 <span>                           clean_ref <span class="op">=</span> <span class="cn">FALSE</span>,</span>
@@ -245,40 +246,40 @@ them.</p>
 <span></span>
 <span><span class="va">data_ref</span></span>
 <span><span class="co">#&gt; # A tibble: 266 × 21</span></span>
-<span><span class="co">#&gt;    id_doc doc      id_ref author date  title type  `container-title` volume pages  url    issue  doi   publisher location</span></span>
-<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;    &lt;chr&gt;  &lt;list&gt; &lt;lis&gt; &lt;lis&gt; &lt;chr&gt; &lt;list&gt;            &lt;list&gt; &lt;list&gt; &lt;list&gt; &lt;list&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;   </span></span>
-<span><span class="co">#&gt;  1      1 example… 1_1    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  2      1 example… 1_2    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  10.1… &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  3      1 example… 1_3    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  4      1 example… 1_4    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  5      1 example… 1_5    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  6      1 example… 1_6    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  7      1 example… 1_7    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  10.1… &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  8      1 example… 1_8    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; book  &lt;NULL&gt;            &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  Princeto… &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt;  9      1 example… 1_9    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; pape… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;chr&gt;  &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
-<span><span class="co">#&gt; 10      1 example… 1_10   &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; pape… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;chr&gt;  &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;    </span></span>
+<span><span class="co">#&gt;    id_doc doc          id_ref author date  title type  `container-title` volume pages  url    issue  doi   publisher location edition genre note  editor</span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;        &lt;chr&gt;  &lt;list&gt; &lt;lis&gt; &lt;lis&gt; &lt;chr&gt; &lt;list&gt;            &lt;list&gt; &lt;list&gt; &lt;list&gt; &lt;list&gt; &lt;chr&gt; &lt;chr&gt;     &lt;chr&gt;    &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;list&gt;</span></span>
+<span><span class="co">#&gt;  1      1 example_doc… 1_1    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  2      1 example_doc… 1_2    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  10.1… &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  3      1 example_doc… 1_3    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  4      1 example_doc… 1_4    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  5      1 example_doc… 1_5    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;NULL&gt; &lt;chr&gt;  &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  6      1 example_doc… 1_6    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  7      1 example_doc… 1_7    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; arti… &lt;chr [1]&gt;         &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  10.1… &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  8      1 example_doc… 1_8    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; book  &lt;NULL&gt;            &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NULL&gt; &lt;NA&gt;  Princeto… &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt;  9      1 example_doc… 1_9    &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; pape… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;chr&gt;  &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
+<span><span class="co">#&gt; 10      1 example_doc… 1_10   &lt;df&gt;   &lt;chr&gt; &lt;chr&gt; pape… &lt;chr [1]&gt;         &lt;NULL&gt; &lt;NULL&gt; &lt;chr&gt;  &lt;NULL&gt; &lt;NA&gt;  &lt;NA&gt;      &lt;NA&gt;     &lt;NA&gt;    &lt;NA&gt;  &lt;NA&gt;  &lt;NULL&gt;</span></span>
 <span><span class="co">#&gt; # ℹ 256 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 6 more variables: edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;, editor &lt;list&gt;, `collection-title` &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 2 more variables: `collection-title` &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
 <p>As you may have seen, anystyle runs twice per document: the second
-time serve to extract the references in a .ref format, and is used to
-keep the whole reference in a column of the table. This could be useful
-for cleaning the data later.</p>
+time serve to extract the references in a <code>.ref</code> format, and
+is used to keep the whole reference in a column of the table. This could
+be useful for cleaning the data later.</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_ref</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> </span>
+<code class="sourceCode R"><span><span class="va">data_ref</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span><span class="op">(</span><span class="va">id_ref</span>, <span class="va">full_ref</span><span class="op">)</span></span>
 <span><span class="co">#&gt; # A tibble: 266 × 2</span></span>
-<span><span class="co">#&gt;    id_ref full_ref                                                                                                       </span></span>
-<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                                                                                                          </span></span>
-<span><span class="co">#&gt;  1 1_1    Arnold, M. (2023). ECB must do more to tackle inflation “Monster”, says christine lagarde’. Financial Times.   </span></span>
-<span><span class="co">#&gt;  2 1_2    Barro, R. J., &amp; Gordon, D. B. (1983). Rules, discretion and reputation in a model of monetary policy’. Journal…</span></span>
-<span><span class="co">#&gt;  3 1_3    Béland, D. (2009). Ideas, institutions, and policy change’. Journal of European Public Policy, 16(5), 701–718. </span></span>
-<span><span class="co">#&gt;  4 1_4    Berger, H., &amp; Haan, J. (1999). A state within the state? An event study on the bundesbank (1948–1973)’. Scotti…</span></span>
-<span><span class="co">#&gt;  5 1_5    Best, J. (2018). Technocratic exceptionalism: Monetary policy and the fear of democracy’. International Politi…</span></span>
-<span><span class="co">#&gt;  6 1_6    Blei, D. M., Ng, A. Y., &amp; Jordan, M. I. (2003). Latent Dirichlet Allocation’. Journal of Machine Learning Rese…</span></span>
-<span><span class="co">#&gt;  7 1_7    Braun, B., Carlo, D., &amp; Diessner, S. (2022). Planning Laissez-Faire: Supranational Central Banking and Structu…</span></span>
-<span><span class="co">#&gt;  8 1_8    Carpenter, D. P. (2010). Reputation and power: Organizational image and pharmaceutical regulation at the FDA. …</span></span>
-<span><span class="co">#&gt;  9 1_9    Constâncio, V. (2016). The challenge of low real interest rates for monetary policy’. At the Macroeconomics Sy…</span></span>
-<span><span class="co">#&gt; 10 1_10   Constâncio, V. (2017). Effectiveness of monetary union and the capital markets union’. At the EUROFI Conferenc…</span></span>
+<span><span class="co">#&gt;    id_ref full_ref                                                                                                                                      </span></span>
+<span><span class="co">#&gt;    &lt;chr&gt;  &lt;chr&gt;                                                                                                                                         </span></span>
+<span><span class="co">#&gt;  1 1_1    Arnold, M. (2023). ECB must do more to tackle inflation “Monster”, says christine lagarde’. Financial Times.                                  </span></span>
+<span><span class="co">#&gt;  2 1_2    Barro, R. J., &amp; Gordon, D. B. (1983). Rules, discretion and reputation in a model of monetary policy’. Journal of Monetary Economics, 12(1), …</span></span>
+<span><span class="co">#&gt;  3 1_3    Béland, D. (2009). Ideas, institutions, and policy change’. Journal of European Public Policy, 16(5), 701–718.                                </span></span>
+<span><span class="co">#&gt;  4 1_4    Berger, H., &amp; Haan, J. (1999). A state within the state? An event study on the bundesbank (1948–1973)’. Scottish Journal of Political Economy…</span></span>
+<span><span class="co">#&gt;  5 1_5    Best, J. (2018). Technocratic exceptionalism: Monetary policy and the fear of democracy’. International Political Sociology, 12(4), 328–345.  </span></span>
+<span><span class="co">#&gt;  6 1_6    Blei, D. M., Ng, A. Y., &amp; Jordan, M. I. (2003). Latent Dirichlet Allocation’. Journal of Machine Learning Research, 3.                        </span></span>
+<span><span class="co">#&gt;  7 1_7    Braun, B., Carlo, D., &amp; Diessner, S. (2022). Planning Laissez-Faire: Supranational Central Banking and Structural Reforms’. Zeitschrift Für P…</span></span>
+<span><span class="co">#&gt;  8 1_8    Carpenter, D. P. (2010). Reputation and power: Organizational image and pharmaceutical regulation at the FDA. Princeton University Press.     </span></span>
+<span><span class="co">#&gt;  9 1_9    Constâncio, V. (2016). The challenge of low real interest rates for monetary policy’. At the Macroeconomics Symposium, Utrecht School of Econ…</span></span>
+<span><span class="co">#&gt; 10 1_10   Constâncio, V. (2017). Effectiveness of monetary union and the capital markets union’. At the EUROFI Conference. https://www.bis.org//review/…</span></span>
 <span><span class="co">#&gt; # ℹ 256 more rows</span></span></code></pre></div>
 <p>The data extracted are still a bit messy. Most columns are in list
 format, with sometimes two or more element per reference (like two
@@ -305,28 +306,93 @@ character columns.</li>
 analysis and readability.</li>
 </ul>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">data_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_ref.html">clean_ref</a></span><span class="op">(</span><span class="va">data_ref</span><span class="op">)</span> </span>
+<code class="sourceCode R"><span><span class="va">data_ref</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/clean_ref.html">clean_ref</a></span><span class="op">(</span><span class="va">data_ref</span><span class="op">)</span></span>
 <span></span>
 <span><span class="va">data_ref</span></span>
 <span><span class="co">#&gt; # A tibble: 266 × 24</span></span>
-<span><span class="co">#&gt;    id_doc doc        id_ref author   title  year `container-title` volume pages location publisher type  date  other_date</span></span>
-<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;      &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;     </span></span>
-<span><span class="co">#&gt;  1      1 example_d… 1_1    &lt;tibble&gt; ECB …  2023 Financial Times   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2023  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  2      1 example_d… 1_2    &lt;tibble&gt; Rule…  1983 Journal of Monet… 12     101–… &lt;NA&gt;     &lt;NA&gt;      arti… 1983  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  3      1 example_d… 1_3    &lt;tibble&gt; Idea…  2009 Journal of Europ… 16     701–… &lt;NA&gt;     &lt;NA&gt;      arti… 2009  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  4      1 example_d… 1_4    &lt;tibble&gt; A st…  1999 Scottish Journal… 46     17–39 &lt;NA&gt;     &lt;NA&gt;      arti… 1999  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  5      1 example_d… 1_5    &lt;tibble&gt; Tech…  2018 International Po… 12     328–… &lt;NA&gt;     &lt;NA&gt;      arti… 2018  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  6      1 example_d… 1_6    &lt;tibble&gt; Late…  2003 Journal of Machi… 3      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2003  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  7      1 example_d… 1_7    &lt;tibble&gt; Plan…  2022 Zeitschrift Für … 32     707–… &lt;NA&gt;     &lt;NA&gt;      arti… 2022  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  8      1 example_d… 1_8    &lt;tibble&gt; Repu…  2010 &lt;NA&gt;              &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     Princeto… book  2010  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt;  9      1 example_d… 1_9    &lt;tibble&gt; The …  2016 At the Macroecon… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2016  &lt;NA&gt;      </span></span>
-<span><span class="co">#&gt; 10      1 example_d… 1_10   &lt;tibble&gt; Effe…  2017 At the EUROFI Co… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2017  &lt;NA&gt;      </span></span>
+<span><span class="co">#&gt;    id_doc doc         id_ref author   title  year `container-title` volume pages location publisher type  date  other_date other_title url   issue doi  </span></span>
+<span><span class="co">#&gt;     &lt;int&gt; &lt;chr&gt;       &lt;chr&gt;  &lt;list&gt;   &lt;chr&gt; &lt;int&gt; &lt;chr&gt;             &lt;chr&gt;  &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;     &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;      &lt;chr&gt;       &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;</span></span>
+<span><span class="co">#&gt;  1      1 example_do… 1_1    &lt;tibble&gt; ECB …  2023 Financial Times   &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2023  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  2      1 example_do… 1_2    &lt;tibble&gt; Rule…  1983 Journal of Monet… 12     101–… &lt;NA&gt;     &lt;NA&gt;      arti… 1983  &lt;NA&gt;       &lt;NA&gt;        http… 1     10.1…</span></span>
+<span><span class="co">#&gt;  3      1 example_do… 1_3    &lt;tibble&gt; Idea…  2009 Journal of Europ… 16     701–… &lt;NA&gt;     &lt;NA&gt;      arti… 2009  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  5     &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  4      1 example_do… 1_4    &lt;tibble&gt; A st…  1999 Scottish Journal… 46     17–39 &lt;NA&gt;     &lt;NA&gt;      arti… 1999  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  1     &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  5      1 example_do… 1_5    &lt;tibble&gt; Tech…  2018 International Po… 12     328–… &lt;NA&gt;     &lt;NA&gt;      arti… 2018  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  4     &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  6      1 example_do… 1_6    &lt;tibble&gt; Late…  2003 Journal of Machi… 3      &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      arti… 2003  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  7      1 example_do… 1_7    &lt;tibble&gt; Plan…  2022 Zeitschrift Für … 32     707–… &lt;NA&gt;     &lt;NA&gt;      arti… 2022  &lt;NA&gt;       &lt;NA&gt;        http… 3     10.1…</span></span>
+<span><span class="co">#&gt;  8      1 example_do… 1_8    &lt;tibble&gt; Repu…  2010 &lt;NA&gt;              &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     Princeto… book  2010  &lt;NA&gt;       &lt;NA&gt;        &lt;NA&gt;  &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt;  9      1 example_do… 1_9    &lt;tibble&gt; The …  2016 At the Macroecon… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2016  &lt;NA&gt;       &lt;NA&gt;        http… &lt;NA&gt;  &lt;NA&gt; </span></span>
+<span><span class="co">#&gt; 10      1 example_do… 1_10   &lt;tibble&gt; Effe…  2017 At the EUROFI Co… &lt;NA&gt;   &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;      pape… 2017  &lt;NA&gt;       &lt;NA&gt;        http… &lt;NA&gt;  &lt;NA&gt; </span></span>
 <span><span class="co">#&gt; # ℹ 256 more rows</span></span>
-<span><span class="co">#&gt; # ℹ 10 more variables: other_title &lt;chr&gt;, url &lt;chr&gt;, issue &lt;chr&gt;, doi &lt;chr&gt;, edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;,</span></span>
-<span><span class="co">#&gt; #   editor &lt;chr&gt;, `collection-title` &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
+<span><span class="co">#&gt; # ℹ 6 more variables: edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;, editor &lt;chr&gt;, `collection-title` &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
 <p>These cleaning steps are directly implemented in
 <code><a href="../reference/find_ref_to_df.html">find_ref_to_df()</a></code> and <code><a href="../reference/find_ref_to_df.html">parse_ref_to_df()</a></code>: you
 just need to set <code>clean_ref</code> to TRUE.</p>
+</div>
+<div class="section level2">
+<h2 id="from-references-to-word-document">From References to Word Document<a class="anchor" aria-label="anchor" href="#from-references-to-word-document"></a>
+</h2>
+<p>The <code>Ranystyle</code> package provides two powerful functions,
+<code><a href="../reference/find_ref_to_word_bibliography.html">find_ref_to_word_bibliography()</a></code> and
+<code><a href="../reference/find_ref_to_word_bibliography.html">parse_ref_to_word_bibliography()</a></code>, designed to streamline
+the process of extracting bibliographic references from documents and
+compiling them into a formatted Word document. Whether working with
+dense academic papers in PDF format or plain text files, these functions
+are your gateway to an organized and presentable bibliography. For
+instance, it allows you to extract the bibliography of a PDF and
+reproduce it in a Word document but in a different <a href="https://fr.wikipedia.org/wiki/Citation_Style_Language" class="external-link">Citation
+Style Language (CSL)</a>.</p>
+<div class="section level3">
+<h3 id="extracting-references-from-pdfs-to-word">Extracting References from PDFs to Word<a class="anchor" aria-label="anchor" href="#extracting-references-from-pdfs-to-word"></a>
+</h3>
+<p>The find_ref_to_word_bibliography function is designed to extract
+references from PDF documents. It utilizes the find_ref() function under
+the hood to analyze the PDF and identify reference sections. Once the
+references are extracted, they are converted into a ‘.bib’ format and
+subsequently used to generate a Word document with a formatted
+bibliography.</p>
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># Path to the PDF document</span></span>
+<span><span class="va">pdf_path</span> <span class="op">&lt;-</span> <span class="st">"path/to/your/document.pdf"</span></span>
+<span></span>
+<span><span class="co"># Output Word file path (optional)</span></span>
+<span><span class="va">word_output_path</span> <span class="op">&lt;-</span> <span class="st">"path/to/output/bibliography.docx"</span></span>
+<span></span>
+<span><span class="co"># CSL file path for formatting (optional)</span></span>
+<span><span class="va">csl_path</span> <span class="op">&lt;-</span> <span class="st">"path/to/your/style.csl"</span></span>
+<span></span>
+<span><span class="co"># Extract references and generate the Word bibliography</span></span>
+<span><span class="fu"><a href="../reference/find_ref_to_word_bibliography.html">find_ref_to_word_bibliography</a></span><span class="op">(</span>input <span class="op">=</span> <span class="va">pdf_path</span>,</span>
+<span>                              output_file <span class="op">=</span> <span class="va">word_output_path</span>,</span>
+<span>                              csl_path <span class="op">=</span> <span class="va">csl_path</span><span class="op">)</span></span></code></pre></div>
+</div>
+<div class="section level3">
+<h3 id="parsing-references-from-text-files-to-word">Parsing References from Text Files to Word<a class="anchor" aria-label="anchor" href="#parsing-references-from-text-files-to-word"></a>
+</h3>
+<p>The parse_ref_to_word_bibliography function caters to those who
+prefer working with plain text files, have references in a text format.
+It also allows you to build a word document bibliography directly from
+references stored in a vector of strings</p>
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="co"># List of references</span></span>
+<span><span class="va">references</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
+<span>  <span class="st">"Smith, J. (2020). Understanding Artificial Intelligence. AI Journal, 35(5), 123-145."</span>,</span>
+<span>  <span class="st">"Johnson, L., &amp; Brown, C. (2018). Advances in Machine Learning. New York: Academic Press."</span>,</span>
+<span>  <span class="st">"Clark, E., &amp; Wright, R. (2019). Robotics and Automation. London: Springer, 200-250."</span>,</span>
+<span>  <span class="st">"Davis, M. (2021). Quantum Computing: A New Era. Quantum Computing, 5(3), 300-320."</span>,</span>
+<span>  <span class="st">"Adams, J., &amp; Murphy, F. (2022). Exploring Virtual Reality. VR World, 10(7), 777-800."</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="co"># Output Word file path (optional)</span></span>
+<span><span class="va">word_output_path</span> <span class="op">&lt;-</span> <span class="st">"path/to/output/bibliography.docx"</span></span>
+<span></span>
+<span><span class="co"># CSL file path for formatting (optional)</span></span>
+<span><span class="va">csl_path</span> <span class="op">&lt;-</span> <span class="st">"path/to/your/style.csl"</span></span>
+<span></span>
+<span><span class="co"># Parse references and generate the Word bibliography</span></span>
+<span><span class="fu"><a href="../reference/find_ref_to_word_bibliography.html">parse_ref_to_word_bibliography</a></span><span class="op">(</span>input <span class="op">=</span> <span class="va">references</span>,</span>
+<span>                               output_file <span class="op">=</span> <span class="va">word_output_path</span>,</span>
+<span>                               csl_path <span class="op">=</span> <span class="va">csl_path</span><span class="op">)</span></span></code></pre></div>
+</div>
 </div>
 
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
