@@ -92,7 +92,7 @@
 </div>
 <!-- badges: start -->
 
-<p>Ranystyle is an R package designed to automate the extraction, parsing, and cleaning of bibliographic references from PDF and text documents. Utilizing the power of the ‘anystyle’ Ruby gem, it segments references and converts them into structured formats suitable for analysis and use.</p>
+<p>Ranystyle (pronounce R-anystyle) is an R package designed to automate the <strong>extraction</strong>, <strong>parsing</strong>, and <strong>cleaning</strong> of <strong>bibliographic references</strong> from PDF and text documents as well as vector of references stored in an R object. Utilizing the power of the ‘anystyle’ Ruby gem, it segments references and converts them into structured formats suitable for analysis and use.</p>
 <p>You can cite this package as:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"Ranystyle"</span><span class="op">)</span></span>
@@ -121,6 +121,7 @@
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("devtools")</span></span>
 <span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"agoutsmedt/Ranystyle"</span><span class="op">)</span></span></code></pre></div>
+<p>For the functions of <em>Ranystyle</em> to work, you need to install manually <a href="https://www.ruby-lang.org/fr/downloads/" class="external-link">Ruby</a> and <a href="https://rubygems.org/pages/download?locale=fr" class="external-link">RubyGems</a> first. Then, you can use <code><a href="reference/install_anystyle.html">install_anystyle()</a></code> to automatically install <code>anystyle</code> and <code>anystyle-cli</code> ruby gems.</p>
 </div>
 <div class="section level2">
 <h2 id="example">Example<a class="anchor" aria-label="anchor" href="#example"></a>
@@ -134,8 +135,8 @@
 <span></span>
 <span><span class="co"># Extract references from the PDF</span></span>
 <span><span class="va">extracted_refs</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/find_ref_to_df.html">find_ref_to_df</a></span><span class="op">(</span>input <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="va">pdf_path</span>, <span class="st">"/"</span>, <span class="va">files</span><span class="op">[</span><span class="fl">1</span><span class="op">]</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf "</span></span>
-<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf ./"</span></span>
+<span><span class="co">#&gt; [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpMxc1Bs/temp_libpath2cc835e6e90/Ranystyle/extdata/example_doc_1.pdf "</span></span>
+<span><span class="co">#&gt; [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpMxc1Bs/temp_libpath2cc835e6e90/Ranystyle/extdata/example_doc_1.pdf ./"</span></span>
 <span></span>
 <span><span class="co"># Print the extracted references</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">extracted_refs</span><span class="op">)</span></span>
@@ -156,6 +157,7 @@
 <span><span class="co">#&gt; # ℹ 14 more variables: location &lt;chr&gt;, publisher &lt;chr&gt;, type &lt;chr&gt;, date &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   other_date &lt;chr&gt;, other_title &lt;chr&gt;, url &lt;chr&gt;, issue &lt;chr&gt;, doi &lt;chr&gt;,</span></span>
 <span><span class="co">#&gt; #   edition &lt;chr&gt;, genre &lt;chr&gt;, note &lt;chr&gt;, editor &lt;chr&gt;, full_ref &lt;chr&gt;</span></span></code></pre></div>
+<p>See the <code><a href="articles/using_Ranystyle.html">vignette("using_Ranystyle")</a></code> for a more in-depth presentation of the package.</p>
 </div>
 <div class="section level2">
 <h2 id="credits">Credits<a class="anchor" aria-label="anchor" href="#credits"></a>
