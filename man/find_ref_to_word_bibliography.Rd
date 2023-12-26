@@ -35,12 +35,14 @@ more relevant for PDF documents.}
 The path to the created Word document containing the bibliography.
 }
 \description{
+\ifelse{html}{\href{https://lifecycle.r-lib.org/articles/stages.html#experimental}{\figure{lifecycle-experimental.svg}{options: alt='[Experimental]'}}}{\strong{[Experimental]}}
+}
+\details{
 These functions, \code{\link[=find_ref_to_word_bibliography]{find_ref_to_word_bibliography()}} and \code{\link[=parse_ref_to_word_bibliography]{parse_ref_to_word_bibliography()}},
 are designed to extract or parse references from PDF or text documents respectively,
 and then create a formatted bibliography in a Word document using RMarkdown. The references
 are formatted according to the specified Citation Style Language (CSL) file, if provided.
-}
-\details{
+
 Both functions operate by first extracting or parsing references from the specified
 document using the \code{\link[=find_ref]{find_ref()}} or \code{\link[=parse_ref]{parse_ref()}} function respectively and saving the results
 in a temporary '.bib' file. They then construct an RMarkdown document with YAML front matter
@@ -52,10 +54,12 @@ the formatted bibliography in the resulting document.
 \dontrun{
 # Assuming you have a PDF document named 'sample.pdf' in your working directory
 # and you want to create a Word document named 'bibliography.docx':
-find_ref_to_word_bibliography(input = "sample.pdf", output_file = "full/path/to/bibliography.docx")
+find_ref_to_word_bibliography(input = "sample.pdf",
+output_file = "full/path/to/bibliography.docx")
 
 # If you also have a CSL file for formatting named 'apa.csl' (document saved in the directory file):
-find_ref_to_word_bibliography(input = "sample.pdf", output_file = "bibliography.docx", csl_path = "apa.csl")
+find_ref_to_word_bibliography(input = "sample.pdf",
+output_file = "bibliography.docx", csl_path = "apa.csl")
 }
 
 }

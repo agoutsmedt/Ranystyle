@@ -1,5 +1,7 @@
 #' Create a Word Bibliography from References in PDF or Text Documents
 #'
+#' `r lifecycle::badge("experimental")`
+#'
 #' These functions, [find_ref_to_word_bibliography()] and [parse_ref_to_word_bibliography()],
 #' are designed to extract or parse references from PDF or text documents respectively,
 #' and then create a formatted bibliography in a Word document using RMarkdown. The references

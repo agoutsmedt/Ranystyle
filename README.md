@@ -9,10 +9,12 @@
 experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
 <!-- badges: end -->
 
-Ranystyle is an R package designed to automate the extraction, parsing,
-and cleaning of bibliographic references from PDF and text documents.
-Utilizing the power of the ‘anystyle’ Ruby gem, it segments references
-and converts them into structured formats suitable for analysis and use.
+Ranystyle (pronounce R-anystyle) is an R package designed to automate
+the **extraction**, **parsing**, and **cleaning** of **bibliographic
+references** from PDF and text documents as well as vector of references
+stored in an R object. Utilizing the power of the ‘anystyle’ Ruby gem,
+it segments references and converts them into structured formats
+suitable for analysis and use.
 
 You can cite this package as:
 
@@ -48,6 +50,12 @@ You can install the development version of Ranystyle from
 devtools::install_github("agoutsmedt/Ranystyle")
 ```
 
+For the functions of *Ranystyle* to work, you need to install manually
+[Ruby](https://www.ruby-lang.org/fr/downloads/) and
+[RubyGems](https://rubygems.org/pages/download?locale=fr) first. Then,
+you can use `install_anystyle()` to automatically install `anystyle` and
+`anystyle-cli` ruby gems.
+
 ## Example
 
 Here’s a basic example of how you might use Ranystyle to parse and clean
@@ -61,8 +69,8 @@ files <- list.files(pdf_path)
 
 # Extract references from the PDF
 extracted_refs <- find_ref_to_df(input = paste0(pdf_path, "/", files[1]))
-#> [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf "
-#> [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpaWpjf1/temp_libpath510437971c72/Ranystyle/extdata/example_doc_1.pdf ./"
+#> [1] "anystyle -f json find C:/Users/goutsmedt/AppData/Local/Temp/RtmpMxc1Bs/temp_libpath2cc835e6e90/Ranystyle/extdata/example_doc_1.pdf "
+#> [1] "anystyle --overwrite -f ref find C:/Users/goutsmedt/AppData/Local/Temp/RtmpMxc1Bs/temp_libpath2cc835e6e90/Ranystyle/extdata/example_doc_1.pdf ./"
 
 # Print the extracted references
 print(extracted_refs)
@@ -84,6 +92,9 @@ print(extracted_refs)
 #> #   other_date <chr>, other_title <chr>, url <chr>, issue <chr>, doi <chr>,
 #> #   edition <chr>, genre <chr>, note <chr>, editor <chr>, full_ref <chr>
 ```
+
+See the `vignette("using_Ranystyle")` for a more in-depth presentation
+of the package.
 
 ## Credits
 
