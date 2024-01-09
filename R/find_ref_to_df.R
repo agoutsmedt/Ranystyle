@@ -117,6 +117,7 @@ parse_ref_to_df <- function(
     data_ref <- build_data_ref(results) %>%
       dplyr::mutate(full_ref = dplyr::bind_rows(full_ref)$full_ref)
   } else {
+    input <- "ref_to_parse.txt"
     data_ref <- build_data_ref(results, input)
   }
 
