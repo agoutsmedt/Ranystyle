@@ -3,6 +3,11 @@ template:
   bootstrap: 5
   bootswatch: yeti
 
+news:
+  releases:
+  - text: "Ranystyle 0.0.999 (Development Version)"
+    href: https://aurelien-goutsmedt.com/post/release-ranystyle-development/
+
 reference:
 - title: "Installing anystyle"
   desc: >
